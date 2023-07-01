@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +35,18 @@ Route::middleware([
     })->name('dashboard');
 });
 
+// Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+
 Route::get('/appointment', [HomeController::class, 'show'])->name('appointment');
 Route::get('/dentline', [HomeController::class, 'store'])->name('dentline');
 Route::get('/contact', [HomeController::class, 'cont'])->name('contact');
+
+
+Route::get('/accept_doctor_view', [AdminController::class, 'acceptview']);
+Route::post('/upload_doctor', [AdminController::class, 'upload']);
+
+Route::match(['GET', 'POST'], '/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');

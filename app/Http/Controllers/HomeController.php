@@ -16,11 +16,14 @@ class HomeController extends Controller
         {
             if(Auth::user()->usertype=='0')
             {
-                return view('user.home');
+                $doctor = user::where('usertype', 3)->get();
+
+                return view('user.home',compact('doctor'));
             }
             else if (Auth::user()->usertype=='1')
             {
-                return view('admin.home');
+                $doctor = user::where('usertype', 3)->get();
+                return view('admin.home',compact('doctor'));
             }
             else
             {
@@ -35,7 +38,17 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('user.home');
+        if(Auth::id())
+        {
+            return redirect('home');
+        }
+
+        else
+        {
+        $doctor = user::where('usertype', 3)->get();
+
+        return view('user.home',compact('doctor'));
+        }
     }
 
     public function show()

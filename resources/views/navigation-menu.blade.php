@@ -103,13 +103,18 @@
                             <div class="border-t border-gray-200"></div>
 
                             <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}" x-data>
+                            {{-- <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
 
                                 <x-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
+                            </form> --}}
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                @method('POST')
+                                <button type="submit">Logout</button>
                             </form>
                         </x-slot>
                     </x-dropdown>

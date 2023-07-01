@@ -24,6 +24,8 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            'image' => ['nullable', 'image', 'max:2048'], // Add image validation rules
+
         ])->validate();
 
         return User::create([
@@ -38,7 +40,10 @@ class CreateNewUser implements CreatesNewUsers
             'educational_certificates' => $input['educational_certificates'],
             'professional_affiliation_proof' => $input['professional_affiliation_proof'],
             'continuing_education_certificates' => $input['continuing_education_certificates'],
+            'image' => $input['image'],
+
             'password' => Hash::make($input['password']),
         ]);
+
     }
 }

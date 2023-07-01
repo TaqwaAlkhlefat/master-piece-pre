@@ -1,7 +1,6 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -58,36 +57,45 @@
                 <x-input id="experience" class="block mt-1 w-full" type="text" name="experience" :value="old('experience')" autocomplete="off" />
             </div>
 
+            <div id="doctor-fields-image" class="mt-4" style="display: none;">
+                <x-label for="image" value="{{ __('Image') }}" />
+                <x-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" autocomplete="off" accept="image/*" />
+            </div>
+
             <div id="doctor-fields-medical-license" class="mt-4" style="display: none;">
                 <x-label for="medical_license" value="{{ __('Medical License') }}" />
-                <x-input id="medical_license" class="block mt-1 w-full" type="text" name="medical_license" :value="old('medical_license')" autocomplete="off" />
+                <x-input id="medical_license" class="block mt-1 w-full" type="file" name="medical_license" :value="old('medical_license')" autocomplete="off" accept="image/*" />
             </div>
 
             <div id="doctor-fields-certification-documents" class="mt-4" style="display: none;">
                 <x-label for="certification_documents" value="{{ __('Certification Documents') }}" />
-                <x-input id="certification_documents" class="block mt-1 w-full" type="text" name="certification_documents" :value="old('certification_documents')" autocomplete="off" />
+                <x-input id="certification_documents" class="block mt-1 w-full" type="file" name="certification_documents" :value="old('certification_documents')" autocomplete="off" accept="image/*" />
             </div>
 
             <div id="doctor-fields-educational-certificates" class="mt-4" style="display: none;">
                 <x-label for="educational_certificates" value="{{ __('Educational Certificates') }}" />
-                <x-input id="educational_certificates" class="block mt-1 w-full" type="text" name="educational_certificates" :value="old('educational_certificates')" autocomplete="off" />
+                <x-input id="educational_certificates" class="block mt-1 w-full" type="file" name="educational_certificates" :value="old('educational_certificates')" autocomplete="off" accept="image/*" />
             </div>
 
             <div id="doctor-fields-professional-affiliation-proof" class="mt-4" style="display: none;">
                 <x-label for="professional_affiliation_proof" value="{{ __('Professional Affiliation Proof') }}" />
-                <x-input id="professional_affiliation_proof" class="block mt-1 w-full" type="text" name="professional_affiliation_proof" :value="old('professional_affiliation_proof')" autocomplete="off" />
+                <x-input id="professional_affiliation_proof" class="block mt-1 w-full" type="file" name="professional_affiliation_proof" :value="old('professional_affiliation_proof')" autocomplete="off" accept="image/*" />
             </div>
 
             <div id="doctor-fields-continuing-education-certificates" class="mt-4" style="display: none;">
                 <x-label for="continuing_education_certificates" value="{{ __('Continuing Education Certificates') }}" />
-                <x-input id="continuing_education_certificates" class="block mt-1 w-full" type="text" name="continuing_education_certificates" :value="old('continuing_education_certificates')" autocomplete="off" />
+                <x-input id="continuing_education_certificates" class="block mt-1 w-full" type="file" name="continuing_education_certificates" :value="old('continuing_education_certificates')" autocomplete="off" accept="image/*" />
             </div>
+
+            <!-- Hidden input field to store the usertype value -->
+            <input type="hidden" id="usertype" name="usertype" value="0">
 
             <!-- JavaScript to show/hide additional fields based on the selected role -->
             <script>
                 document.getElementById('role').addEventListener('change', function() {
                     var doctorFields = document.getElementById('doctor-fields');
                     var doctorFieldsExperience = document.getElementById('doctor-fields-experience');
+                    var doctorFieldsImage = document.getElementById('doctor-fields-image');
                     var doctorFieldsMedicalLicense = document.getElementById('doctor-fields-medical-license');
                     var doctorFieldsCertificationDocuments = document.getElementById('doctor-fields-certification-documents');
                     var doctorFieldsEducationalCertificates = document.getElementById('doctor-fields-educational-certificates');
@@ -97,6 +105,7 @@
                     if (this.value === 'doctor') {
                         doctorFields.style.display = 'block';
                         doctorFieldsExperience.style.display = 'block';
+                        doctorFieldsImage.style.display = 'block';
                         doctorFieldsMedicalLicense.style.display = 'block';
                         doctorFieldsCertificationDocuments.style.display = 'block';
                         doctorFieldsEducationalCertificates.style.display = 'block';
@@ -105,6 +114,7 @@
                     } else {
                         doctorFields.style.display = 'none';
                         doctorFieldsExperience.style.display = 'none';
+                        doctorFieldsImage.style.display = 'none';
                         doctorFieldsMedicalLicense.style.display = 'none';
                         doctorFieldsCertificationDocuments.style.display = 'none';
                         doctorFieldsEducationalCertificates.style.display = 'none';
@@ -113,6 +123,28 @@
                     }
                 });
             </script>
+            <script>
+                document.getElementById('role').addEventListener('change', function() {
+                    var doctorFields = document.getElementById('doctor-fields');
+                    var doctorFieldsExperience = document.getElementById('doctor-fields-experience');
+                    var userTypeInput = document.getElementById('usertype');
+
+                    if (this.value === 'doctor') {
+                        doctorFields.style.display = 'block';
+                        doctorFieldsExperience.style.display = 'block';
+
+                        // Set usertype value to 2 for doctor
+                        userTypeInput.value = '2';
+                    } else {
+                        doctorFields.style.display = 'none';
+                        doctorFieldsExperience.style.display = 'none';
+
+                        // Set usertype value to 0 for user
+                        userTypeInput.value = '0';
+                    }
+                });
+            </script>
+
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">

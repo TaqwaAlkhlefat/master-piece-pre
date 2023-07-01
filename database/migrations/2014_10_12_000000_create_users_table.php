@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('usertype')->default(0);
-            $table->string('specialization')->nullable();
-            $table->integer('experience')->nullable();
-            $table->string('medical_license')->nullable();
-            $table->string('certification_documents')->nullable();
-            $table->string('educational_certificates')->nullable();
-            $table->string('professional_affiliation_proof')->nullable();
-            $table->string('continuing_education_certificates')->nullable();
+            $table->string('specialization')->nullable()->default('No Specialization Added');
+            $table->integer('experience')->nullable()->default(0);
+            $table->string('medical_license')->nullable()->default('default.jpg');
+            $table->string('certification_documents')->nullable()->default('default.jpg');
+            $table->string('educational_certificates')->nullable()->default('default.jpg');
+            $table->string('professional_affiliation_proof')->nullable()->default('default.jpg');
+            $table->string('continuing_education_certificates')->nullable()->default('default.jpg');
             $table->boolean('admin_approval')->default(false);
 
             $table->timestamp('email_verified_at')->nullable();
