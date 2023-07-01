@@ -31,14 +31,14 @@
                     @csrf
                     <div class="container" align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
                         @foreach ($doctor as $doctors)
-                          <div class="card-container">
+                          <div class="card-container" style="max-height: 1600px; max-width: 1600px;">
                             <div class="card" style="width: 18rem;  border: 2px solid #ccc; border-radius: 5px; margin: 50px;">
                                 <img class="img-fluid rounded" src="doctorimage/{{ $doctors->image }}" alt="">
-                              <div class="card-body">
+                              <div class="card-body" style="max-height: 150px;">
                                 <h5 class="card-title"><div>{{ $doctors->name }}</div></h5>
                                 <p class="card-text">
-                                  {{ $doctors->specialization }}
-                                  {{ $doctors->experience }}
+                                  <p>Specialization: {{ $doctors->specialization }}</p>
+                                  <p>{{ $doctors->experience }} Years Experience</p>
                                 </p>
                               </div>
                               <ul class="list-group list-group-flush">
