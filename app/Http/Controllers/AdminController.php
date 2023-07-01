@@ -13,34 +13,41 @@ class AdminController extends Controller
         return view('admin.accept_doctor',compact('doctor'));
     }
 
+    public function acceptDoctor(Request $request)
+    {
+        $doctorId = $request->input('doctor_id');
+
+        // Update the "admin_approval" value for the doctor with the provided ID
+        $doctor = User::find($doctorId);
+        if ($doctor) {
+            $doctor->admin_approval = 1;
+            $doctor->save();
+
+            // Return a successful response
+            return response()->json(['message' => 'Doctor accepted successfully'], 200);
+        }
+
+        // Return an error response
+        return response()->json(['message' => 'Doctor not found'], 404);
+    }
+
+
 
     public function index()
     {
         $doctor = user::where('usertype', 3)->get();
-        return view('admin.accept_doctor.index',compact('doctor'));
+        return view('admin.accept_doctor',compact('doctor'));
     }
 
-    // public function index()
-    // {
 
 
-
-    //     return view('admin.productdashboard.index', compact('products','categories'));
-    // }
-
-
-    public function edit($id)
+    public function upload(Request $request)
     {
-        $doctor = user::where('usertype', 3)->get();
-        return view('users.edit',compact('doctor'));
+        $doctor = User::where('usertype', 3)->get();
+
+        return redirect()->route('admin.accept_doctor')->with('success', 'Doctor accepted successfully');
     }
 
-    public function upload(Request $request, $id)
-    {
-        $doctor = user::where('usertype', 3)->get();
 
-
-        return redirect()->route('admin.accept_doctor',compact('doctor'))->with('success', 'Doctor Accepted successfully');
-    }
 
 }

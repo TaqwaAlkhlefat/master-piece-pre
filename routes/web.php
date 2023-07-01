@@ -35,8 +35,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-// Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
 
 Route::get('/appointment', [HomeController::class, 'show'])->name('appointment');
 Route::get('/dentline', [HomeController::class, 'store'])->name('dentline');
@@ -50,3 +48,6 @@ Route::match(['GET', 'POST'], '/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+Route::post('/upload_doctor/{id}', [AdminController::class, 'upload'])->name('admin.upload');
+Route::get('/accept_doctor', [AdminController::class, 'index'])->name('admin.accept_doctor');
