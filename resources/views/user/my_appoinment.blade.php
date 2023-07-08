@@ -124,7 +124,7 @@
 <div class="container-fluid bg-primary py-5 hero-header mb-5">
     <div class="row py-3">
         <div class="col-12 text-center">
-            <h1 class="display-3 text-white animated zoomIn">Appointment</h1>
+            <h1 class="display-3 text-white animated zoomIn">Your Appointment</h1>
             <a href="" class="h4 text-white">Home</a>
             <i class="far fa-circle text-white px-2"></i>
             <a href="" class="h4 text-white">Appointment</a>
@@ -134,58 +134,37 @@
 <!-- Hero End -->
 {{--  --}}
 
-@if (session()->has('message'))
-    <div class="alert alert-success d-flex justify-content-between align-items-center">
-        {{ session()->get('message') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
 
+<div>
 
-<div class="page-section">
-    <div class="container">
-        <h1 class="text-center wow fadeInUp"></h1>
+    <table class="table table-dark table-striped">
 
-        <form class="main-form" action="{{ url('appointmentt') }}" method="POST">
+        <tr>
+            <th>Doctor Name</th>
+            <th>Date</th>
+            <th>Message</th>
+            <th>Status</th>
+            <th>Cancel Appointment</th>
+        </tr>
 
-            @csrf
+        @foreach ($appoint as $appoints )
 
-            <div class="row mt-5 ">
-                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <input type="text" name="name" class="form-control" placeholder="Full name" style="/* Add your inline styles here */">
-                </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-                    <input type="text" name="email" class="form-control" placeholder="Email address.." style="/* Add your inline styles here */">
-                </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-                    <input type="date" name="date" class="form-control" style="/* Add your inline styles here */">
-                </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
-                    <select name="doctor" id="departement" class="custom-select" style="/* Add your inline styles here */">
-                        <option>Select Doctor</option>
-                        @foreach ($doctor as $doctors )
+        <tr>
+            <td>{{ $appoints->doctor }}</td>
+            <td>{{ $appoints->date }}</td>
+            <td>{{ $appoints->message }}</td>
+            <td>{{ $appoints->status }}</td>
+            <td><a class="btn btn-danger" onclick="return confirm('are you sure to delete this')" href="{{ url('cancel_appoint',$appoints->id) }}">Cancel</a></td>
+        </tr>
 
-                        <option value="{{ $doctors->name }}">{{ $doctors->name }} - {{ $doctors->specialization }}</option>
+        @endforeach
 
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-                    <input type="text" name="number" class="form-control" placeholder="Number.." style="/* Add your inline styles here */">
-                </div>
-                <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-                    <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter message.." style="/* Add your inline styles here */"></textarea>
-                </div>
-            </div>
+    </table>
 
-            <button type="submit" class="btn btn-primary mt-3 wow zoomIn" style="/* Add your inline styles here */">Submit Request</button>
-        </form>
-    </div>
 </div>
 
-  {{--  --}}
 
-
+{{--  --}}
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light py-5 wow fadeInUp" data-wow-delay="0.3s" style="margin-top: 20px;">
         <div class="container pt-5">

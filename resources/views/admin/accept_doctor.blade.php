@@ -23,18 +23,25 @@
 
     <div class="container-fluid page-body-wrapper">
       <div class="container" align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
-        <form action="{{ url('upload_doctor') }}" method="POST" enctype="multipart/form-data">
+        <form>
           @csrf
           <div class="container" align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
             @foreach ($doctor as $doctors)
             <div class="card-container" style="max-height: 1600px; max-width: 1600px;">
               <div class="card" style="width: 18rem; border: 2px solid #ccc; border-radius: 5px; margin: 50px;">
                 <img class="img-fluid rounded" src="doctorimage/{{ $doctors->image }}" alt="">
-                <div class="card-body" style="max-height: 150px;">
+                <div class="card-body" style="max-height: 180px;">
                   <h5 class="card-title"><div>{{ $doctors->name }}</div></h5>
                   <p class="card-text">
                     <p>Specialization: {{ $doctors->specialization }}</p>
                     <p>{{ $doctors->experience }} Years Experience</p>
+                    <p>
+                        @if ($doctors->admin_approval == 0)
+                          In process
+                        @elseif ($doctors->admin_approval == 1)
+                          Approved
+                        @endif
+                      </p>
                   </p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -45,7 +52,8 @@
                   <li class="list-group-item"><img style="max-height: 200px; max-width: 200px;" class="img-fluid rounded-top" src="doctordocument/{{ $doctors->continuing_education_certificates }}" alt=""></li>
                 </ul>
                 <div class="card-body">
-                    <button href="#" class="btn btn-success" onclick="acceptDoctor({{ $doctors->id }})">Accept The Doctor</button>
+                    <a href="{{url('acceptDoctor',$doctors->id)}}" class="btn btn-success">Accept The Doctor</a>
+                    {{-- <a class="btn btn-success" href="{{url('approved',$appoint->id)}}">Approved</a> --}}
                 </div>
               </div>
             </div>

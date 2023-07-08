@@ -13,23 +13,23 @@ class AdminController extends Controller
         return view('admin.accept_doctor',compact('doctor'));
     }
 
-    public function acceptDoctor(Request $request)
-    {
-        $doctorId = $request->input('doctor_id');
+    // public function acceptDoctor(Request $request)
+    // {
+    //     $doctorId = $request->input('doctor_id');
 
-        // Update the "admin_approval" value for the doctor with the provided ID
-        $doctor = User::find($doctorId);
-        if ($doctor) {
-            $doctor->admin_approval = 1;
-            $doctor->save();
+    //     // Update the "admin_approval" value for the doctor with the provided ID
+    //     $doctor = User::find($doctorId);
+    //     if ($doctor) {
+    //         $doctor->admin_approval = 1;
+    //         $doctor->save();
 
-            // Return a successful response
-            return response()->json(['message' => 'Doctor accepted successfully'], 200);
-        }
+    //         // Return a successful response
+    //         return response()->json(['message' => 'Doctor accepted successfully'], 200);
+    //     }
 
-        // Return an error response
-        return response()->json(['message' => 'Doctor not found'], 404);
-    }
+    //     // Return an error response
+    //     return response()->json(['message' => 'Doctor not found'], 404);
+    // }
 
 
 
@@ -41,13 +41,23 @@ class AdminController extends Controller
 
 
 
-    public function upload(Request $request)
+    // public function upload(Request $request)
+    // {
+    //     $doctor = User::where('usertype', 3)->get();
+
+    //     return redirect()->route('admin.accept_doctor')->with('success', 'Doctor accepted successfully');
+    // }
+
+    public function acceptDoctor($id)
     {
-        $doctor = User::where('usertype', 3)->get();
+        $data=User::find($id);
 
-        return redirect()->route('admin.accept_doctor')->with('success', 'Doctor accepted successfully');
+        $data->admin_approval='1';
+
+        $data->save();
+
+        return redirect()->back();
     }
-
 
 
 }
