@@ -16,7 +16,7 @@
                     @foreach ($doctor as $doctors )
                     <div class="price-item pb-4">
                         <div class="position-relative">
-                            <img height="300px" class="img-fluid rounded-top" src="doctorimage/{{ $doctors->image }}" alt="">
+                            <img style="max-height: 260px;" class="img-fluid rounded-top" src="doctorimage/{{ $doctors->image }}" alt="">
                             <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
                                 <h2 class="text-primary m-0">$35</h2>
                             </div>

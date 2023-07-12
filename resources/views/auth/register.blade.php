@@ -2,7 +2,9 @@
     <x-authentication-card>
         <x-slot name="logo">
         </x-slot>
-
+        {{--  --}}
+        {{-- <link rel="stylesheet" href="http://[::1]:5173/resources/css/app.css"> --}}
+        {{--  --}}
         <x-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">
@@ -40,7 +42,7 @@
 
             <div class="mt-4">
                 <x-label for="role" value="{{ __('Register as') }}" />
-                <select id="role" name="role" class="block mt-1 w-full" required>
+                <select id="role" name="role" class="block mt-1 w-full" required onchange="toggleAdditionalFields(this.value)">
                     <option value="user">User</option>
                     <option value="doctor">Doctor</option>
                 </select>
@@ -55,6 +57,11 @@
             <div id="doctor-fields-experience" class="mt-4" style="display: none;">
                 <x-label for="experience" value="{{ __('Experience') }}" />
                 <x-input id="experience" class="block mt-1 w-full" type="text" name="experience" :value="old('experience')" autocomplete="off" />
+            </div>
+
+            <div id="doctor-Session-price" class="mt-4" style="display: none;">
+                <x-label for="Session_price" value="{{ __('price (5-35 JD)') }}" />
+                <x-input id="Session_price" class="block mt-1 w-full" type="number" name="Session_price" :value="old('Session_price')" autocomplete="off" min="5" max="35" />
             </div>
 
             <div id="doctor-fields-image" class="mt-4" style="display: none;">
@@ -90,36 +97,74 @@
             <!-- Hidden input field to store the usertype value -->
             <input type="hidden" id="usertype" name="usertype" value="0">
 
+            {{-- <div id="doctor-fields-usertype" class="mt-4">
+                <label for="usertype" class="flex items-center">
+                    <input id="usertype" type="checkbox" name="usertype" value="3">
+                    <span class="ml-2">{{ __('I confirm that all the data mentioned above are correct') }}</span>
+                </label>
+            </div> --}}
+
+            <div id="doctor-fields-usertype" class="mt-4">
+                <label for="usertype" class="flex items-center">
+                    <input id="usertype" type="checkbox" name="usertype" value="3">
+                    <span class="ml-2">{{ __('I confirm that all the data mentioned above are correct') }}</span>
+                </label>
+            </div>
+
+            <script>
+                var checkbox = document.getElementById('usertype');
+                checkbox.addEventListener('change', function() {
+                    if (checkbox.checked) {
+                        checkbox.value = '3';
+                    } else {
+                        checkbox.value = '0';
+                    }
+                });
+            </script>
+
+
+
             <!-- JavaScript to show/hide additional fields based on the selected role -->
             <script>
                 document.getElementById('role').addEventListener('change', function() {
                     var doctorFields = document.getElementById('doctor-fields');
                     var doctorFieldsExperience = document.getElementById('doctor-fields-experience');
+                    var doctorFieldsSessionPrice = document.getElementById('doctor-Session-price');
                     var doctorFieldsImage = document.getElementById('doctor-fields-image');
                     var doctorFieldsMedicalLicense = document.getElementById('doctor-fields-medical-license');
                     var doctorFieldsCertificationDocuments = document.getElementById('doctor-fields-certification-documents');
                     var doctorFieldsEducationalCertificates = document.getElementById('doctor-fields-educational-certificates');
                     var doctorFieldsProfessionalAffiliationProof = document.getElementById('doctor-fields-professional-affiliation-proof');
                     var doctorFieldsContinuingEducationCertificates = document.getElementById('doctor-fields-continuing-education-certificates');
+                    var doctorFieldsusertype = document.getElementById('doctor-fields-usertype');
+                    var doctorFieldsusertype = document.getElementById('usertype');
+
+
 
                     if (this.value === 'doctor') {
                         doctorFields.style.display = 'block';
                         doctorFieldsExperience.style.display = 'block';
+                        doctorFieldsSessionPrice.style.display = 'block';
                         doctorFieldsImage.style.display = 'block';
                         doctorFieldsMedicalLicense.style.display = 'block';
                         doctorFieldsCertificationDocuments.style.display = 'block';
                         doctorFieldsEducationalCertificates.style.display = 'block';
                         doctorFieldsProfessionalAffiliationProof.style.display = 'block';
                         doctorFieldsContinuingEducationCertificates.style.display = 'block';
+                        doctorFieldsusertype.style.display = 'block';
+                        doctorFieldsusertype.style.display = 'block';
                     } else {
                         doctorFields.style.display = 'none';
                         doctorFieldsExperience.style.display = 'none';
+                        doctorFieldsSessionPrice.style.display = 'none';
                         doctorFieldsImage.style.display = 'none';
                         doctorFieldsMedicalLicense.style.display = 'none';
                         doctorFieldsCertificationDocuments.style.display = 'none';
                         doctorFieldsEducationalCertificates.style.display = 'none';
                         doctorFieldsProfessionalAffiliationProof.style.display = 'none';
                         doctorFieldsContinuingEducationCertificates.style.display = 'none';
+                        doctorFieldsusertype.style.display = 'none';
+                        doctorFieldsusertype.style.display = 'none';
                     }
                 });
             </script>
@@ -134,7 +179,7 @@
                         doctorFieldsExperience.style.display = 'block';
 
                         // Set usertype value to 2 for doctor
-                        userTypeInput.value = '2';
+                        userTypeInput.value = '3';
                     } else {
                         doctorFields.style.display = 'none';
                         doctorFieldsExperience.style.display = 'none';

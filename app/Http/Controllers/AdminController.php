@@ -59,5 +59,14 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function deletDoctor($id)
+    {
+        $data=User::find($id);
+
+        $data->delete();
+
+        return redirect()->back();
+    }
+
 
 }

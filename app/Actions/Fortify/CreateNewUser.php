@@ -24,9 +24,10 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-            'image' => ['nullable', 'image', 'max:2048'], // Add image validation rules
 
         ])->validate();
+
+
 
         return User::create([
             'name' => $input['name'],
@@ -35,15 +36,19 @@ class CreateNewUser implements CreatesNewUsers
             'address' => $input['address'],
             'specialization' => $input['specialization'],
             'experience' => $input['experience'],
+            'Session_price' => $input['Session_price'],
             'medical_license' => $input['medical_license'],
             'certification_documents' => $input['certification_documents'],
             'educational_certificates' => $input['educational_certificates'],
             'professional_affiliation_proof' => $input['professional_affiliation_proof'],
             'continuing_education_certificates' => $input['continuing_education_certificates'],
             'image' => $input['image'],
+            'usertype' => $input['usertype'],
 
             'password' => Hash::make($input['password']),
         ]);
+
+
 
     }
 }

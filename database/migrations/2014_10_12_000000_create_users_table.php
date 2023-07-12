@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('professional_affiliation_proof')->nullable()->default('default.jpg');
             $table->string('continuing_education_certificates')->nullable()->default('default.jpg');
             $table->boolean('admin_approval')->default(false);
-
+            
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

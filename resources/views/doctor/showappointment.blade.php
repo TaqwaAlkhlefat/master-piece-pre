@@ -56,11 +56,11 @@
                             </tr>
                         @endforeach
                     </table>
-                    <div><a href="{{url('doctor.home')}}" >Back</a> </div>
+                    {{-- <div><a href="{{url('doctor.home')}}" >Back</a> </div> --}}
                 </div>
                 <!-- Social Info-->
               </div>
       </div>
-      <h4><x-app-layout></x-app-layout></h4>
+      {{-- <h4><x-app-layout></x-app-layout></h4> --}}
 </body>
 </html>
