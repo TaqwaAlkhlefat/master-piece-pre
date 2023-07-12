@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/home',[HomeController::class,'redirect']);
+Route::get('/home',[HomeController::class,'redirect'])->middleware('auth','verified');
 
 Route::middleware([
     'auth:sanctum',
@@ -54,6 +54,9 @@ Route::match(['GET', 'POST'], '/logout', function () {
 
 Route::get('/acceptDoctor/{id}', [AdminController::class, 'acceptDoctor'])->name('acceptDoctor');
 
+Route::get('/deletDoctor/{id}', [AdminController::class, 'deletDoctor'])->name('deletDoctor');
+
+
 
 Route::match(['get', 'post'], '/appointmentt', [HomeController::class, 'appointmentt']);
 
@@ -66,9 +69,21 @@ Route::get('/cancel_appoint/{id}', [HomeController::class, 'cancel_appoint'])->n
 
 Route::get('/showappointment', [DoctorController::class, 'showappointment'])->name('showappointment');
 
+Route::get('/changeinformation', [DoctorController::class, 'changeinformation'])->name('changeinformation');
+
+// Route::Post('/editdoctor', [DoctorController::class, 'editdoctor'])->name('editdoctor');
+
+
+
+
+
 
 // in doctor dashboard
 
 Route::get('/approved/{id}', [DoctorController::class, 'approved'])->name('approved');
 
 Route::get('/canceled/{id}', [DoctorController::class, 'canceled'])->name('canceled');
+
+Route::post('/updateinformation', [DoctorController::class, 'updateInformation'])->name('updateinformation');
+
+

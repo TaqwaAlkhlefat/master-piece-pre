@@ -29,7 +29,7 @@
             @foreach ($doctor as $doctors)
             <div class="card-container" style="max-height: 1600px; max-width: 1600px;">
               <div class="card" style="width: 18rem; border: 2px solid #ccc; border-radius: 5px; margin: 50px;">
-                <img class="img-fluid rounded" src="doctorimage/{{ $doctors->image }}" alt="">
+                <img class="img-fluid rounded" src="doctorimage/{{ $doctors->image }}" alt="" style="max-height: 250px;">
                 <div class="card-body" style="max-height: 180px;">
                   <h5 class="card-title"><div>{{ $doctors->name }}</div></h5>
                   <p class="card-text">
@@ -52,8 +52,8 @@
                   <li class="list-group-item"><img style="max-height: 200px; max-width: 200px;" class="img-fluid rounded-top" src="doctordocument/{{ $doctors->continuing_education_certificates }}" alt=""></li>
                 </ul>
                 <div class="card-body">
-                    <a href="{{url('acceptDoctor',$doctors->id)}}" class="btn btn-success">Accept The Doctor</a>
-                    {{-- <a class="btn btn-success" href="{{url('approved',$appoint->id)}}">Approved</a> --}}
+                    <a href="{{url('acceptDoctor',$doctors->id)}}" class="btn btn-success btn-sm">Accept</a>
+                    <a href="{{url('deletDoctor',$doctors->id)}}" class="btn btn-danger btn-sm">Delete</a>
                 </div>
               </div>
             </div>

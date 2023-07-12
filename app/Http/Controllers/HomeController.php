@@ -72,32 +72,37 @@ class HomeController extends Controller
 
     public function appointmentt(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('message', 'Please login to book an appointment.');
+        }
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'date' => 'required',
+            'number' => 'required',
+            'doctor' => 'required',
+        ]);
+
         $data = new appointment;
 
-        $data->name=$request->name;
-
-        $data->email=$request->email;
-
-        $data->date=$request->date;
-
-        $data->phone=$request->number;
-
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->date = $request->date;
+        $data->phone = $request->number;
         $data->message=$request->message;
+        $data->doctor = $request->doctor;
+        $data->status = 'In progress';
 
-        $data->doctor=$request->doctor;
-
-        $data->status='In progress';
-
-        if(Auth::id())
-        {
-            $data->user_id=Auth::user()->id;
+        if (Auth::id()) {
+            $data->user_id = Auth::user()->id;
         }
 
         $data->save();
 
-        return redirect()->back()->with('message','Appointment Request Successful, We Will contact with you soon');
-
+        return redirect()->back()->with('message', 'Appointment Request Successful. We will contact you soon.');
     }
+
 
     public function myappointment()
     {

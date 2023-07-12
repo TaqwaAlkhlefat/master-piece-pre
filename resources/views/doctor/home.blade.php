@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <link href="{{ asset('doctor/doctor.css') }}" rel="stylesheet" />
+    <style>
+        a {
+            text-decoration: none;
+            color: black
+        }
+    </style>
 </head>
 <body>
     <div class="page-content page-container" id="page-content">
@@ -25,23 +31,21 @@
                                                             </div>
                                                             <div class="col-sm-8">
                                                                 <div class="card-block">
-                                                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information:</h6>
                                                                     <div class="row">
                                                                         <div class="col-sm-6">
-                                                                            <a class="" href="{{ url('showappointment') }}">
-                                                                            <p class="m-b-10 f-w-600">Show My Appointment</p>
+                                                                            <a class="" href="{{ url('showappointment') }}" style="text-decoration: none;">
+                                                                            <p class="m-b-10 f-w-600" style="color:black">Show My Appointment</p>
                                                                             </a>
-                                                                            <h6 class="text-muted f-w-400"></h6>
-                                                                        </div>
-                                                                        <div class="col-sm-6">
-                                                                            <p class="m-b-10 f-w-600"></p>
                                                                             <h6 class="text-muted f-w-400"></h6>
                                                                         </div>
                                                                     </div>
                                                                     <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
                                                                     <div class="row">
                                                                         <div class="col-sm-6">
-                                                                            <p class="m-b-10 f-w-600"></p>
+                                                                            <a class="" href="{{ url('changeinformation') }}" style="text-decoration: none;">
+                                                                                <p class="m-b-10 f-w-600" style="color:black">change my information</p>
+                                                                            </a>
                                                                             <h6 class="text-muted f-w-400"></h6>
                                                                         </div>
                                                                         <div class="col-sm-6">
