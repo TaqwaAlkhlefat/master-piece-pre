@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->decimal('session_price', 8, 2)->nullable()->default('5');
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->time('time')->nullable();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('appointments', function (Blueprint $table) {
             //
         });
     }

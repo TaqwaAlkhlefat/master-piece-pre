@@ -41,6 +41,11 @@ class DoctorController extends Controller
         return redirect()->back();
     }
 
+    public function emailview($id)
+    {
+        return view('doctor.email_view');
+    }
+
 public function changeinformation(Request $request)
 {
     $userData = $request->session()->get('user_data');

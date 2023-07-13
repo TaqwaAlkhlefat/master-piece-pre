@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('login.css') }}">
+
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -13,20 +15,23 @@
             </div>
         @endif
 
+        <div class="wrapper">
+            <h2>Login</h2>
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div>
+            <div class="input-box">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
-            <div class="mt-4">
+            <div class="input-box">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <div class="block mt-4">
+            <div  class="policy">
                 <label for="remember_me" class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
@@ -40,10 +45,19 @@
                     </a>
                 @endif
 
-                <x-button class="ml-4">
+                <div class="input-box button">
+                    <button style="padding: 10px 20px; font-size: 16px;">
+                        {{ __('Log in') }}
+                    </button>
+                </div>
+
+                {{-- <x-button >
                     {{ __('Log in') }}
-                </x-button>
+                </x-button> --}}
+                
             </div>
         </form>
+        </div>
+
     </x-authentication-card>
 </x-guest-layout>

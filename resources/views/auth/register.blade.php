@@ -1,17 +1,19 @@
+<link rel="stylesheet" href="{{ asset('register.css') }}">
+
 <x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-        </x-slot>
-        {{--  --}}
-        <link rel="stylesheet" href="{{ asset('register.css') }}">
-        {{--  --}}
-        <x-validation-errors class="mb-4" />
+
 
         <div class="wrapper">
             <h2>Registration</h2>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
+
+            <x-authentication-card style="color: red">
+                <x-slot name="logo">
+                </x-slot>
+                <x-validation-errors class="mb-4" />
+
 
             <div class="input-box">
                 <x-label for="name" value="{{ __('Name') }}" />
@@ -43,58 +45,88 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
-            <div >
+            <div class="select-box">
                 <x-label for="role" value="{{ __('Register as') }}" />
-                <select id="role" name="role" class="select-box" required onchange="toggleAdditionalFields(this.value)">
-                    <option value="user">User</option>
-                    <option value="doctor">Doctor</option>
+                <select id="role" name="role" required onchange="toggleAdditionalFields(this.value)">
+                  <option value="user">User</option>
+                  <option value="doctor">Doctor</option>
                 </select>
-            </div>
+              </div>
+
 
             <!-- Additional fields for doctor registration -->
             <div id="doctor-fields" class="input-box" style="display: none;">
-                <x-label for="specialization" value="{{ __('Specialization') }}" />
+                <label for="specialization">{{ __('Specialization') }}</label>
                 <x-input id="specialization" class="block mt-1 w-full" type="text" name="specialization" :value="old('specialization')" autocomplete="off" />
             </div>
 
             <div id="doctor-fields-experience" class="input-box" style="display: none;">
-                <x-label for="experience" value="{{ __('Experience') }}" />
+                <label for="experience">{{ __('Experience') }}</label>
                 <x-input id="experience" class="block mt-1 w-full" type="text" name="experience" :value="old('experience')" autocomplete="off" />
             </div>
 
             <div id="doctor-Session-price" class="input-box" style="display: none;">
-                <x-label for="Session_price" value="{{ __('price (5-35 JD)') }}" />
+                <label for="Session_price">{{ __('Price (5-35 JD)') }}</label>
                 <x-input id="Session_price" class="block mt-1 w-full" type="number" name="Session_price" :value="old('Session_price')" autocomplete="off" min="5" max="35" />
             </div>
 
-            <div id="doctor-fields-image"  style="display: none;">
-                <x-label for="image" value="{{ __('Image') }}" />
-                <x-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" autocomplete="off" accept="image/*" />
-            </div>
 
-            <div id="doctor-fields-medical-license"  style="display: none;">
-                <x-label for="medical_license" value="{{ __('Medical License') }}" />
+            <div id="doctor-fields-image" style="display: none;" class="file-input-container">
+                <label id="labaleimage" for="image" style="display: flex; align-items: center;">
+                  <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                  {{ __('Image') }}
+                </label>
+                <x-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" autocomplete="off" accept="image/*" />
+              </div>
+
+
+
+            <div id="doctor-fields-medical-license"  style="display: none;" class="file-input-container">
+                <label id="labaleimage" for="medical_license" style="display: flex; align-items: center;">
+                    <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                    {{ __('Medical License') }}
+                  </label>
                 <x-input id="medical_license" class="block mt-1 w-full" type="file" name="medical_license" :value="old('medical_license')" autocomplete="off" accept="image/*" />
             </div>
 
-            <div id="doctor-fields-certification-documents"  style="display: none;">
-                <x-label for="certification_documents" value="{{ __('Certification Documents') }}" />
+            <div id="doctor-fields-certification-documents"  style="display: none;" class="file-input-container">
+                <label id="labaleimage" for="certification_documents" style="display: flex; align-items: center;">
+                    <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                    {{ __('Certification Documents') }}
+                  </label>
                 <x-input id="certification_documents" class="block mt-1 w-full" type="file" name="certification_documents" :value="old('certification_documents')" autocomplete="off" accept="image/*" />
             </div>
 
-            <div id="doctor-fields-educational-certificates"  style="display: none;">
-                <x-label for="educational_certificates" value="{{ __('Educational Certificates') }}" />
+            <div id="doctor-fields-educational-certificates"  style="display: none;" class="file-input-container">
+                <label id="labaleimage" for="educational_certificates" style="display: flex; align-items: center;">
+                    <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                    {{ __('Educational Certificates') }}
+                  </label>
                 <x-input id="educational_certificates" class="block mt-1 w-full" type="file" name="educational_certificates" :value="old('educational_certificates')" autocomplete="off" accept="image/*" />
             </div>
 
-            <div id="doctor-fields-professional-affiliation-proof"  style="display: none;">
-                <x-label for="professional_affiliation_proof" value="{{ __('Professional Affiliation Proof') }}" />
+            <div id="doctor-fields-professional-affiliation-proof"  style="display: none;" class="file-input-container">
+                <label id="labaleimage" for="professional_affiliation_proof" style="display: flex; align-items: center;">
+                    <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                    {{ __('Professional Affiliation Proof') }}
+                  </label>
                 <x-input id="professional_affiliation_proof" class="block mt-1 w-full" type="file" name="professional_affiliation_proof" :value="old('professional_affiliation_proof')" autocomplete="off" accept="image/*" />
             </div>
 
-            <div id="doctor-fields-continuing-education-certificates"  style="display: none;">
-                <x-label for="continuing_education_certificates" value="{{ __('Continuing Education Certificates') }}" />
+            <div id="doctor-fields-continuing-education-certificates"  style="display: none;" class="file-input-container" >
+                <label id="labaleimage" for="continuing_education_certificates" style="display: flex; align-items: center;">
+                    <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                    {{ __('Continuing Education Certificates') }}
+                  </label>
                 <x-input id="continuing_education_certificates" class="block mt-1 w-full" type="file" name="continuing_education_certificates" :value="old('continuing_education_certificates')" autocomplete="off" accept="image/*" />
+
+                <div  class="policy">
+                    <label for="usertype" class="flex items-center">
+                        <input  type="checkbox" name="usertype" value="3">
+                        <span class="ml-2">{{ __('I confirm that all the data mentioned above are correct') }}</span>
+                    </label>
+                </div>
+
             </div>
 
             <!-- Hidden input field to store the usertype value -->
@@ -107,12 +139,7 @@
                 </label>
             </div> --}}
 
-            <div id="doctor-fields-usertype" class="policy">
-                <label for="usertype" class="flex items-center">
-                    <input id="usertype" type="checkbox" name="usertype" value="3">
-                    <span class="ml-2">{{ __('I confirm that all the data mentioned above are correct') }}</span>
-                </label>
-            </div>
+
 
             <script>
                 var checkbox = document.getElementById('usertype');
@@ -215,11 +242,14 @@
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
+
                 <div class="input-box button">
-                <x-button class="btn btn-primary">
-                    {{ __('Register') }}
-                </x-button>
+                    <button style="padding: 10px 20px; font-size: 16px;">
+                        {{ __('Register') }}
+                    </button>
                 </div>
+
+
             </div>
         </form>
     </x-authentication-card>

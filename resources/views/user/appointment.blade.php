@@ -166,9 +166,14 @@
                     <select name="doctor" id="departement" class="custom-select">
                         <option>Select Doctor</option>
                         @foreach ($doctor as $doctors)
+                        @if ($doctors->admin_approval == 1)
                             <option value="{{ $doctors->name }}">{{ $doctors->name }} - {{ $doctors->specialization }}</option>
+                        @endif
                         @endforeach
                     </select>
+                </div>
+                <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+                    <input type="time" name="time" class="form-control" placeholder="">
                 </div>
                 <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
                     <input type="text" name="number" class="form-control" placeholder="Number..">

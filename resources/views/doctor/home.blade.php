@@ -9,33 +9,57 @@
     <style>
         a {
             text-decoration: none;
-            color: black
+            /* color: black */
         }
     </style>
 </head>
-<body>
-    <div class="page-content page-container" id="page-content">
+<body align="center" style="width: 80%; margin:auto">
+    <div class="page-content page-container" id="page-content" >
         <div class="padding">
             <div class="row container d-flex justify-content-center">
     <div class="col-xl-6 col-md-12">
-                                                    <div class="card user-card-full">
+                                                    <div class="card user-card-full" >
                                                         <div class="row m-l-0 m-r-0">
                                                             <div class="col-sm-4 bg-c-lite-green user-profile">
-                                                                <div class="card-block text-center text-white">
-                                                                    <div class="m-b-25">
-                                                                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                                                                <div class="card-block text-center text-white" >
+                                                                    @foreach ($doctor as $doctors)
+                                                                    <div  class="m-b-25" style="display: flex; gap:50px;">
+                                                                        <div>
+                                                                        {{-- <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"> --}}
+                                                                        <img src="doctorimage/{{ $doctors->image }}" class="img-radius" alt="User-Profile-Image" height="250px">
+                                                                        </div>
+                                                                        <div>
+                                                                        <h6 class="f-w-600" style="font-size: 20px; word-spacing: 20px; letter-spacing: 2px; line-height: 2; "
+                                                                        ><x-app-layout></x-app-layout></h6>
+                                                                        </div>
                                                                     </div>
-                                                                    <h6 class="f-w-600"><x-app-layout></x-app-layout></h6>
+                                                                    @endforeach
                                                                     <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-8">
+
+                                                                @if($doctors ->admin_approval =='0')
+
+
                                                                 <div class="card-block">
-                                                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information:</h6>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                            <p class="m-b-10 f-w-600" style="color:black; font-size: 30px; line-height: 2;">Hello Doctor <span> {{ $doctors->name }} </span>, please wait for the admin approval to join the doctors department</p>
+                                                                            <h6 class="text-muted f-w-400"></h6>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                @else
+
+                                                                <div class="card-block">
+                                                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600" style="font-size: 30px"></h6>
                                                                     <div class="row">
                                                                         <div class="col-sm-6">
                                                                             <a class="" href="{{ url('showappointment') }}" style="text-decoration: none;">
-                                                                            <p class="m-b-10 f-w-600" style="color:black">Show My Appointment</p>
+                                                                            <p class="m-b-10 f-w-600" style="color:black; font-size: 30px">Show My Appointment</p>
                                                                             </a>
                                                                             <h6 class="text-muted f-w-400"></h6>
                                                                         </div>
@@ -44,7 +68,7 @@
                                                                     <div class="row">
                                                                         <div class="col-sm-6">
                                                                             <a class="" href="{{ url('changeinformation') }}" style="text-decoration: none;">
-                                                                                <p class="m-b-10 f-w-600" style="color:black">change my information</p>
+                                                                                <p class="m-b-10 f-w-600" style="color:black; font-size: 30px">change my information</p>
                                                                             </a>
                                                                             <h6 class="text-muted f-w-400"></h6>
                                                                         </div>
@@ -59,6 +83,9 @@
                                                                         <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
                                                                     </ul>
                                                                 </div>
+
+                                                            @endif
+
                                                             </div>
                                                         </div>
                                                     </div>

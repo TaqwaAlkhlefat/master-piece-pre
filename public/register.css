@@ -42,7 +42,7 @@ body{
 }
 .wrapper form .input-box{
   height: 52px;
-  margin: 18px 0;
+  margin: 30px 0;
 }
 form .input-box input{
   height: 100%;
@@ -71,14 +71,14 @@ form h3{
   font-weight: 500;
   margin-left: 10px;
 }
-.input-box.button input{
+.input-box.button button{
   color: #fff;
   letter-spacing: 1px;
   border: none;
   background: #4070f4;
   cursor: pointer;
 }
-.input-box.button input:hover{
+.input-box.button button:hover{
   background: #0e4bf1;
 }
 form .text h3{
@@ -94,11 +94,98 @@ form .text h3 a:hover{
   text-decoration: underline;
 }
 
-.select-box select {
-    height: 100%;
-    width: 100%;
-    outline: none;
-    border: none;
-    color: #707070;
-    font-size: 1rem;
+/*  */
+
+.select-box {
+    display: inline-block;
+    position: relative;
   }
+
+  .select-box select {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #707070;
+    cursor: pointer;
+  }
+
+  .select-box::before {
+    content: '\f078';
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #707070;
+  }
+
+  .select-box select:focus {
+    outline: none;
+    border-color: #4070f4;
+  }
+
+  .select-box select::-ms-expand {
+    display: none;
+  }
+
+  /* Add this if you want to style the dropdown arrow */
+  .select-box select option {
+    padding: 10px;
+  }
+
+
+
+    /*  */
+
+
+      #labaleimage {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        /* background-color: #f0f0f0; */
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 10px;
+      }
+
+      #labaleimage::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        /* background-image: url('public/img/camera-icon.jpg'); */
+        background-size: cover;
+      }
+
+            #image
+      #medical_license
+      #certification_documents
+      #educational_certificates
+      #professional_affiliation_proof
+      #continuing_education_certificates
+       input[type="file"] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .mb-4 div{
+        color:red;
+      }
+
+      ul li{
+        color:red;
+      }

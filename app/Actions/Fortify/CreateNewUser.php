@@ -27,6 +27,14 @@ class CreateNewUser implements CreatesNewUsers
 
         ])->validate();
 
+// Set the default image if the fields are empty
+$medicalLicense = $input['medical_license'] ?: 'default.jpg';
+$certificationDocuments = $input['certification_documents'] ?: 'default.jpg';
+$educationalCertificates = $input['educational_certificates'] ?: 'default.jpg';
+$professionalAffiliationProof = $input['professional_affiliation_proof'] ?: 'default.jpg';
+$continuingEducationCertificates = $input['continuing_education_certificates'] ?: 'default.jpg';
+$imagee = $input['image'] ?: 'default.png';
+
 
 
         return User::create([
@@ -37,12 +45,12 @@ class CreateNewUser implements CreatesNewUsers
             'specialization' => $input['specialization'],
             'experience' => $input['experience'],
             'Session_price' => $input['Session_price'],
-            'medical_license' => $input['medical_license'],
-            'certification_documents' => $input['certification_documents'],
-            'educational_certificates' => $input['educational_certificates'],
-            'professional_affiliation_proof' => $input['professional_affiliation_proof'],
-            'continuing_education_certificates' => $input['continuing_education_certificates'],
-            'image' => $input['image'],
+            'medical_license' => $medicalLicense,
+            'certification_documents' => $certificationDocuments,
+            'educational_certificates' => $educationalCertificates,
+            'professional_affiliation_proof' => $professionalAffiliationProof,
+            'continuing_education_certificates' => $continuingEducationCertificates,
+            'image' => $imagee,
             'usertype' => $input['usertype'],
 
             'password' => Hash::make($input['password']),

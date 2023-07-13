@@ -14,11 +14,12 @@
             <div class="col-lg-7">
                 <div class="owl-carousel price-carousel wow zoomIn" data-wow-delay="0.9s">
                     @foreach ($doctor as $doctors )
+                    @if ($doctors->admin_approval == 1)
                     <div class="price-item pb-4">
                         <div class="position-relative">
                             <img style="max-height: 260px;" class="img-fluid rounded-top" src="doctorimage/{{ $doctors->image }}" alt="">
                             <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
-                                <h2 class="text-primary m-0">$35</h2>
+                                <h2 class="text-primary m-0">JD{{ $doctors ->session_price }}</h2>
                             </div>
                         </div>
                         <div class="position-relative text-center bg-light border-bottom border-primary py-5 p-4">
@@ -30,6 +31,7 @@
                             <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Appointment</a>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
             </div>

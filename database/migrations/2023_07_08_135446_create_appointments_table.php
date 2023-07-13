@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('message')->nullable();
             $table->string('status')->nullable();
-            $table->string('user_id')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

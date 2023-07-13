@@ -32,11 +32,13 @@
                             <th>Customer name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Date</th>
+                            <th style="width:120px">Date</th>
+                            <th>Time</th>
                             <th>Message</th>
                             <th>Status</th>
                             <th>Approved</th>
                             <th>Canceled</th>
+                            <th>Send Mail</th>
                         </tr>
 
                         @foreach ($data as $appoint )
@@ -45,6 +47,7 @@
                                 <td>{{ $appoint->email }}</td>
                                 <td>{{ $appoint->phone }}</td>
                                 <td>{{ $appoint->date }}</td>
+                                <td>{{ $appoint->time }}</td>
                                 <td>{{ $appoint->message }}</td>
                                 <td>{{ $appoint->status }}</td>
                                 <td>
@@ -52,6 +55,9 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-danger" href="{{url('canceled',$appoint->id)}}">Canceled</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{url('emailview',$appoint->id)}}">Send Mail</a>
                                 </td>
                             </tr>
                         @endforeach

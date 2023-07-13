@@ -30,7 +30,17 @@ class HomeController extends Controller
             }
             else
             {
-                return view('doctor.home');
+                // return view('doctor.home');
+
+                $id = auth()->user()->id;
+
+                $doctor = User::where('id', $id)->get();
+
+                $admin_approval= User::where('admin_approval',$id)->get();
+
+                return view('doctor.home',compact('doctor'));
+
+
             }
         }
         else
@@ -89,6 +99,7 @@ class HomeController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->date = $request->date;
+        $data->time = $request->time;
         $data->phone = $request->number;
         $data->message=$request->message;
         $data->doctor = $request->doctor;

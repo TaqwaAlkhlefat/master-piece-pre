@@ -142,6 +142,7 @@
         <tr>
             <th>Doctor Name</th>
             <th>Date</th>
+            <th>Time</th>
             <th>Message</th>
             <th>Status</th>
             <th>Cancel Appointment</th>
@@ -152,6 +153,7 @@
         <tr>
             <td>{{ $appoints->doctor }}</td>
             <td>{{ $appoints->date }}</td>
+            <td>{{ $appoints->time }}</td>
             <td>{{ $appoints->message }}</td>
             <td>{{ $appoints->status }}</td>
             <td><a class="btn btn-danger" onclick="return confirm('are you sure to delete this')" href="{{ url('cancel_appoint',$appoints->id) }}">Cancel</a></td>
