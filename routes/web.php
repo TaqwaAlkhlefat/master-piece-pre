@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/home',[HomeController::class,'redirect']);
+Route::get('/home',[HomeController::class,'redirect'])->middleware('auth','verified');
 
 // Route::get('/home',[HomeController::class,'redirect'])->middleware('auth','verified');
 

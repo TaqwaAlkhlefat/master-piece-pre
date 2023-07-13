@@ -140,7 +140,6 @@
             </div> --}}
 
 
-
             <script>
                 var checkbox = document.getElementById('usertype');
                 checkbox.addEventListener('change', function() {
