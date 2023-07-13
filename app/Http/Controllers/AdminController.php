@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
 
@@ -10,7 +12,21 @@ class AdminController extends Controller
     public function acceptview()
     {
         $doctor = user::where('usertype', 3)->get();
-        return view('admin.accept_doctor',compact('doctor'));
+
+        if(Auth::id())
+        {
+            if(Auth::user()->usertype==1)
+            {
+                return view('admin.accept_doctor',compact('doctor'));
+            }
+            else{
+                return redirect()->back();
+            }
+        }
+        else
+        {
+            return redirect('login');
+        }
     }
 
     // public function acceptDoctor(Request $request)
