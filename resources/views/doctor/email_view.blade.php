@@ -19,7 +19,7 @@
 
     @endif
 
-    <form action="" method="Post" enctype="multipart/form-data">
+    <form action="{{ url('sendemail', $data->id) }}" method="Post">
         @csrf
 
         <div style="padding: 15px">

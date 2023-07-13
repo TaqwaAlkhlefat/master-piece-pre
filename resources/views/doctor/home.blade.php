@@ -26,7 +26,7 @@
                                                                     <div  class="m-b-25" style="display: flex; gap:50px;">
                                                                         <div>
                                                                         {{-- <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"> --}}
-                                                                        <img src="doctorimage/{{ $doctors->image }}" class="img-radius" alt="User-Profile-Image" height="250px">
+                                                                        <img src="doctorimage/{{ $doctors->image }}" class="img-radius" alt="User-Profile-Image" style="max-height:250px">
                                                                         </div>
                                                                         <div>
                                                                         <h6 class="f-w-600" style="font-size: 20px; word-spacing: 20px; letter-spacing: 2px; line-height: 2; "

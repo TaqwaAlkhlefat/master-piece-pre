@@ -91,3 +91,4 @@ Route::post('/updateinformation', [DoctorController::class, 'updateInformation']
 
 Route::get('/emailview/{id}', [DoctorController::class, 'emailview'])->name('emailview');
 
+Route::post('/sendemail/{id}', [DoctorController::class, 'sendemail'])->name('sendemail');
