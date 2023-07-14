@@ -160,7 +160,7 @@
                     <input type="text" name="email" class="form-control" placeholder="Email address..">
                 </div>
                 <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-                    <input type="date" name="date" class="form-control">
+                    <input id="date" type="date" name="date" class="form-control">
                 </div>
                 <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
                     <select name="doctor" id="departement" class="custom-select">
@@ -280,6 +280,30 @@
                 return false; // Prevent form submission
             }
         }
+    </script>
+
+<script language="javascript">
+    $(document).ready(function() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+
+        $('#date').attr('min', today);
+
+
+        // Disable previously selected dates
+
+        $('#date').datepicker({
+            beforeShowDay: function(date) {
+                var dateString = $.datepicker.formatDate('yy-mm-dd', date);
+                return [!bookedDates.includes(dateString)]; // Disable booked dates
+            }
+        });
+    });
+
     </script>
 
     <!-- Template Javascript -->

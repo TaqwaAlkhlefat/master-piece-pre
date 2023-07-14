@@ -37,6 +37,7 @@ $imagee = $input['image'] ?: 'default.png';
 
 
 
+
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],

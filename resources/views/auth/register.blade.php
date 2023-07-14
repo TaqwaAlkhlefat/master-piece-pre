@@ -74,7 +74,7 @@
             <div id="doctor-fields-image" style="display: none;" class="file-input-container">
                 <label id="labaleimage" for="image" style="display: flex; align-items: center;">
                   <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
-                  {{ __('Image') }}
+                  {{ __('Your Image') }}
                 </label>
                 <x-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" autocomplete="off" accept="image/*" />
               </div>

@@ -41,6 +41,9 @@ class User extends Authenticatable
         'continuing_education_certificates',
         'password',
         'usertype',
+        'vote_id',
+        'vote_limit',
+        'voted',
     ];
 
     /**

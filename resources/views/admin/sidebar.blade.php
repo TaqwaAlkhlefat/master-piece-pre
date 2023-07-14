@@ -65,5 +65,15 @@
           <span class="menu-title">Acceptance of doctors</span>
         </a>
       </li>
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{ url('condidate_view') }}">
+          <span class="menu-icon">
+            <i class="mdi mdi-file-document-box"></i>
+          </span>
+          <span class="menu-title">Add Doctor For Voting</span>
+        </a>
+      </li>
+
     </ul>
   </nav>

@@ -84,6 +84,7 @@
                 <a href="{{ route('home') }}" class="nav-item nav-link">Home</a>
                 <a href="{{ route('dentline') }}" class="nav-item nav-link">DentLine</a>
                 <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
+                <a href="{{ route('vote') }}" class="nav-item nav-link">Doctors vote</a>
             </div>
             <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
             <a href="{{ route('appointment') }}" class="btn btn-primary py-2 px-4 ms-3">Make Appointment</a>

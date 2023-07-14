@@ -11,9 +11,12 @@
             width: 200px;
         }
     </style>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> --}}
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> --}}
+    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> --}}
 </head>
 <body>
-<h1>HI</h1>
+{{-- <h1>HI</h1> --}}
 
 @if (session()->has('message'))
     <div class="alert alert-success d-flex justify-content-between align-items-center">
@@ -22,11 +25,98 @@
     </div>
 @endif
 
+{{--  --}}
+@foreach ($doctor as $doctors)
 
-<div class="container" align="center" style="padding:100px">
+
+<div id="editProfileModal" class="modal">
+    <div class="modal-content"  style="padding: 50px">
+        {{-- <span class="close">&times;</span> --}}
+        <h2>Edit Profile</h2>
+        <form id="editProfileForm" method="POST" action="{{ route('editdoctor', ['id' => Auth::user()->id]) }}" class="edit-profile-form" enctype="multipart/form-data">
+            @csrf
+            {{-- @method('PUT') --}}
+            <!-- Add form fields for editing profile information -->
+            <div class="form-group" style="padding: 15px;">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ $doctors->name }}" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value="{{ $doctors->address }}" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" value="{{ $doctors->email }}" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" value="{{ $doctors->phone }}" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="specialization">Specialization:</label>
+                <input type="text" id="specialization" name="specialization" value="{{ $doctors->specialization }}" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="experience">Experience:</label>
+                <input type="text" id="experience" name="experience" value="{{ $doctors->experience }}" class="form-control">
+            </div>
+            <div class="form-group mb-3" style="padding: 15px;">
+                <label class="form-label" for="medical_license">Medical License:</label>
+                <img height="150px" width="200px" src="doctordocument/{{ $doctors->medical_license }}">
+                <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                <input class="form-control" type="file" id="medical_license" name="medical_license">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="certification_documents">Certification Documents:</label>
+                <img height="150px" width="200px" src="doctordocument/{{ $doctors->certification_documents }}">
+                <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                <input type="file" id="certification_documents" name="certification_documents" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="educational_certificates">Educational Certificates:</label>
+                <img height="150px" width="200px" src="doctordocument/{{ $doctors->educational_certificates }}">
+                <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                <input type="file" id="educational_certificates" name="educational_certificates" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="professional_affiliation_proof">Professional Affiliation Proof:</label>
+                <img height="150px" width="200px" src="doctordocument/{{ $doctors->professional_affiliation_proof }}">
+                <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                <input type="file" id="professional_affiliation_proof" name="professional_affiliation_proof" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="continuing_education_certificates">Continuing Education Certificates:</label>
+                <img height="150px" width="200px" src="doctordocument/{{ $doctors->continuing_education_certificates }}">
+                <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                <input type="file" id="continuing_education_certificates" name="continuing_education_certificates" class="form-control">
+            </div>
+            <div class="form-group" style="padding: 15px;">
+                <label for="image">Your Image:</label>
+                <img height="150px" width="150px" src="doctorimage/{{ $doctors->image }}">
+                <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
+                <input type="file" id="image" name="image" class="form-control">
+            </div>
+            {{-- <div class="form-group" style="padding: 15px;">
+                <label for="password">New Password:</label>
+                <input type="text" id="password" name="password" value="" class="form-control" placeholder="Enter new password">
+            </div> --}}
+            <div class="form-group">
+                <button type="submit" class="btn mybutton">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@endforeach
+{{--  --}}
+
+
+{{-- <div class="container" align="center" style="padding:100px"> --}}
     {{-- <form action="{{ route('update-doctor') }}" method="POST" enctype="multipart/form-data"> --}}
 
-        @csrf
+        {{-- @csrf --}}
 
         {{-- <div style="padding: 15px">
             <label>Name</label>
@@ -92,7 +182,7 @@
             <input type="submit" class="btn btn-primary">
         </div>
     </form> --}}
-</div>
+{{-- </div> --}}
 <!-- Form for editing user data -->
 {{-- {{ $data->name }}
 {{ $data->phone }}

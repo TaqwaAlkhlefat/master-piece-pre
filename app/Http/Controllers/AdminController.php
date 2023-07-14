@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Condidate;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,54 @@ class AdminController extends Controller
             return redirect('login');
         }
     }
+
+    public function condidateview()
+    {
+        $candidate = Condidate::All();
+
+        return view('admin.condidate',compact('candidate'));
+    }
+
+    public function upload_condidate(Request $request)
+    {
+
+        $candidate=new Condidate;
+
+        $image=$request->image;
+
+        $imagename=time().'.'.$image->getClientoriginalExtension();
+
+        $request->image->move('doctorimage',$imagename);
+
+        $candidate->image=$imagename;
+
+        $candidate->fname=$request->fname;
+
+        $candidate->lname=$request->lname;
+
+        $candidate->email=$request->email;
+
+        $candidate->pos_id=$request->pos_id;
+
+        $candidate->points=$request->points;
+
+
+        $candidate->save();
+
+        return redirect()->back()->with('message','Candidate Added Successfully');
+
+    }
+
+    public function deletcandidate($id)
+    {
+        $data=Condidate::find($id);
+
+        $data->delete();
+
+        return redirect()->back();
+    }
+
+
 
     // public function acceptDoctor(Request $request)
     // {

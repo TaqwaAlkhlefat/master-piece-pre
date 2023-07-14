@@ -86,24 +86,22 @@ class DoctorController extends Controller
 
 public function changeinformation(Request $request)
 {
-    $userData = $request->session()->get('user_data');
+    // $userData = $request->session()->get('user_data');
 
-        // Retrieve the user's data from the session
-        // $Data = $request->session()->get('data');
+    $id = auth()->user()->id;
 
-        // Pass the user data to the view
-        // return view('edit-doctor', compact('userData'));
+    $doctor = User::where('id', $id)->get();
 
-    // $data = session('user_data'); // Assuming 'user_data' is the key where user data is stored in the session
 
-    return view('doctor.changeinformation', compact('userData'));
+    return view('doctor.changeinformation',compact('doctor'));
 }
 
-    public function editdoctor(Request $request)
+    public function editdoctor(Request $request, $id)
     {
 
+    $user = User::find($id);
 
-        $user = Auth::user()->id;
+
 
         $user->name=$request->name;
         $user->phone=$request->phone;

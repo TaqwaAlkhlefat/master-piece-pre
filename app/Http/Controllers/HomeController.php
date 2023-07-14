@@ -80,6 +80,11 @@ class HomeController extends Controller
         return view('user.contact');
     }
 
+    public function vote()
+    {
+        return view('user.vote');
+    }
+
     public function appointmentt(Request $request)
     {
         if (!Auth::check()) {

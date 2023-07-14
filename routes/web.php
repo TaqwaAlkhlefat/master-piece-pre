@@ -43,6 +43,8 @@ Route::middleware([
 Route::get('/appointment', [HomeController::class, 'show'])->name('appointment');
 Route::get('/dentline', [HomeController::class, 'store'])->name('dentline');
 Route::get('/contact', [HomeController::class, 'cont'])->name('contact');
+Route::get('/vote', [HomeController::class, 'vote'])->name('vote');
+
 
 
 Route::get('/accept_doctor_view', [AdminController::class, 'acceptview']);
@@ -74,7 +76,7 @@ Route::get('/showappointment', [DoctorController::class, 'showappointment'])->na
 
 Route::get('/changeinformation', [DoctorController::class, 'changeinformation'])->name('changeinformation');
 
-// Route::Post('/editdoctor', [DoctorController::class, 'editdoctor'])->name('editdoctor');
+Route::post('/editdoctor/{id}', [DoctorController::class, 'editdoctor'])->name('editdoctor');
 
 
 
@@ -92,3 +94,39 @@ Route::post('/updateinformation', [DoctorController::class, 'updateInformation']
 Route::get('/emailview/{id}', [DoctorController::class, 'emailview'])->name('emailview');
 
 Route::post('/sendemail/{id}', [DoctorController::class, 'sendemail'])->name('sendemail');
+
+
+// For Voting System
+
+// admin routes
+// Route::middleware(['auth:admin'])->group(function () {
+//     Route::prefix('/admin')->group(function () {
+//         Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
+//         Route::get('/positions', Position::class)->name('admin.positions');
+//         Route::get('/condidates', Condidate::class)->name('admin.condidates');
+//         Route::get('/voters', Voter::class)->name('admin.voters');
+//         Route::get('/settings', Setting::class)->name('admin.settings');
+//         Route::get('/change-password', ChangePassword::class)->name('admin.change_password');
+//         Route::get('/votes', GetCandidateVotes::class)->name('admin.votes');
+//     });
+// });
+
+Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/positions', [PositionController::class, 'index'])->name('positions');
+    Route::get('/candidates', [AdminController::class, 'index'])->name('candidates');
+    Route::get('/voters', [VoterController::class, 'index'])->name('voters');
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+    Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change_password');
+    Route::get('/votes', [VoteController::class, 'index'])->name('votes');
+});
+
+//
+
+// Route::get('/accept_doctor_view', [AdminController::class, 'acceptview']);
+
+Route::get('/condidate_view', [AdminController::class, 'condidateview']);
+
+Route::post('/upload_condidate', [AdminController::class, 'upload_condidate'])->name('upload_condidate');
+
+Route::get('/deletcandidate/{id}', [AdminController::class, 'deletcandidate'])->name('deletcandidate');

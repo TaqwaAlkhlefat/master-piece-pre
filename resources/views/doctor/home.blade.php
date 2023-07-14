@@ -68,7 +68,7 @@
                                                                     <div class="row">
                                                                         <div class="col-sm-6">
                                                                             <a class="" href="{{ url('changeinformation') }}" style="text-decoration: none;">
-                                                                                <p class="m-b-10 f-w-600" style="color:black; font-size: 30px">change my information</p>
+                                                                                {{-- <p class="m-b-10 f-w-600" style="color:black; font-size: 30px">Change My Information</p> --}}
                                                                             </a>
                                                                             <h6 class="text-muted f-w-400"></h6>
                                                                         </div>
@@ -93,5 +93,9 @@
                                                  </div>
                                                     </div>
                                                 </div>
+
+
+
+
 </body>
 </html>
