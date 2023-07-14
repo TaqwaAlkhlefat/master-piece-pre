@@ -10,6 +10,8 @@ use App\Models\User;
 
 use App\Models\Appointment;
 
+use App\Models\Condidate;
+
 
 class HomeController extends Controller
 {
@@ -80,10 +82,14 @@ class HomeController extends Controller
         return view('user.contact');
     }
 
-    public function vote()
-    {
-        return view('user.vote');
-    }
+public function vote()
+{
+    $candidates = Condidate::all();
+    $userId = Auth::id();
+
+    return view('user.vote', compact('candidates', 'userId'));
+}
+
 
     public function appointmentt(Request $request)
     {
