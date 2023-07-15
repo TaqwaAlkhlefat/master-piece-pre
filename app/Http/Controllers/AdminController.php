@@ -4,12 +4,23 @@ namespace App\Http\Controllers;
 use App\Models\Condidate;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+    // public function dashboardusers()
+    // {
+    //     // Execute the query
+    //     $userCount = DB::table('users')->where('usertype', 0)->count();
+
+    //     // Render the view with the user count
+    //     return view('admin.home', compact('userCount'));
+    // }
+
     public function acceptview()
     {
         $doctor = user::where('usertype', 3)->get();
@@ -125,6 +136,27 @@ class AdminController extends Controller
     }
 
     public function deletDoctor($id)
+    {
+        $data=User::find($id);
+
+        $data->delete();
+
+        return redirect()->back();
+    }
+
+    // public function deletClient($id)
+    // {
+    //     $data = User::find($id);
+
+    //     if ($data) {
+    //         // Pass the user data to the view
+    //         return view('confirm-delete', compact('data'));
+    //     }
+
+    //     return redirect()->back();
+    // }
+
+    public function deletClient($id)
     {
         $data=User::find($id);
 

@@ -127,10 +127,10 @@
 <div class="container-fluid bg-primary py-5 hero-header mb-5">
     <div class="row py-3">
         <div class="col-12 text-center">
-            <h1 class="display-3 text-white animated zoomIn">Vote</h1>
+            <h1 class="display-3 text-white animated zoomIn">Doctor</h1>
             <a href="" class="h4 text-white">Home</a>
             <i class="far fa-circle text-white px-2"></i>
-            <a href="" class="h4 text-white">Vote</a>
+            <a href="" class="h4 text-white">Doctor</a>
         </div>
     </div>
 </div>
@@ -138,69 +138,108 @@
 {{--  --}}
 
 
-@if (session()->has('message'))
-    <div class="alert alert-success d-flex justify-content-between align-items-center">
-        {{ session()->get('message') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+
+{{-- <div class="search_section" style="margin-top: 10px;">
+
+    <form id="searchForm" action="/search#our_offers" method="POST" enctype="multipart/form-data">
+       @csrf
+       <div class="container">
+           <div class="row">
+             <div class="col-md-12">
+               <h1 class="search_taital">Search Your Best Offers</h1>
+               <div class="container">
+                 <div class="select_box_section">
+                   <div class="select_box_main">
+                     <div class="row">
+                       <div class="col-md-3 select-outline">
+                         <select name="category" id="categorySelect" class="form-select">
+                           <option value="" disabled selected>Any Category</option>
+                           @foreach($categories as $category)
+                           <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                           @endforeach
+                         </select>
+                       </div>
+                       <div class="col-md-4 select-outline">
+                         <label for="min_price"  class="form-label price">Minimum Price:</label>
+                         <input type="range" class="form-range" id="min_price" name="min_price" min="0" max="300" step="20" value="0" class="form-range">
+                         <span id="min_price_label"></span>
+                               <br>
+                         <label for="max_price" class="form-label price">Maximum Price:</label>
+                         <input type="range" class="form-range" id="max_price" name="max_price" min="0" max="300" step="20" value="300" class="form-range">
+                         <span id="max_price_label"></span>
+                       </div>
+                       <div class="col-md-2">
+                         <div class="search_btn"><button id="searchBtn" type="submit" class="btn btn-light">Search Now</button></div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <!-- select box section end -->
+             </div>
+           </div>
+       </div>
+     </form>
+ </div> --}}
+
+
+<!-- gallery section start -->
+
+{{-- <div class="gallery_section layout_padding" id="our_offers">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12">
+               <h1 class="gallery_taital">Our offers</h1>
+           </div>
+       </div>
+       <div class="gallery_section_2">
+           <div class="row mt-4">
+               @if ($products->isEmpty())
+               <p class="no-products">There is no result match this</p>
+               @else
+               @foreach ($products as $product)
+               <div class="col-md-4">
+                   <div class="gallery_box" style="height: 500px; margin:10px;">
+                       <div class="gallery_img" style="padding: 3px;">
+                           <img id="image_product" src="{{ asset('images/'. $product->image1) }}" style="width: 100%; height: 250px;">
+                       </div>
+                       <h3 class="types_text">{{ $product->name }}</h3>
+                       <p class="looking_text">Start per day ${{ $product->product_price }}</p>
+                       <div class="read_bt">
+                           <a href="{{ route('singleproduct', $product->id) }}">See the details</a>
+                       </div>
+                   </div>
+               </div>
+               @endforeach
+               @endif
+           </div>
+       </div>
+   </div>
+</div> --}}
 
 
 
-<div align="center">
-    <form>
-        @csrf
-        <div align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
-            @foreach ($candidates as $candidate)
-            <div class="card-container" style="max-height: 600px; max-width: 600px;">
-                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem; border: 2px solid #ccc; border-radius: 5px; margin: 50px;">
-                    <img class="img-fluid rounded" src="doctorimage/{{ $candidate->image }}" alt=""style="max-height: 230px;">
-                    <div class="card-body" style="max-height: 180px;">
-                        <h5 class="card-title">
-                            <div>{{ $candidate->fname }} {{ $candidate->lname }}</div>
-                        </h5>
-                        <p class="card-text">
-                            <p>
-                                @if ($candidate->pos_id == 1)
-                                Pediatric
-                                @elseif ($candidate->pos_id == 2)
-                                Surgery
-                                @else
-                                Orthodontics
-                                @endif
-                            </p>
-                        </p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"> point : {{ $candidate->points }}</li>
-                    </ul>
 
-                    <div class="card-body">
-                        @php
-                        $isVoted = \App\Models\Votes::where(['user_id' => $userId, 'con_id' => $candidate->id])->first();
-                        @endphp
+{{-- <script>
+function updateRangeValue(inputId, labelId) {
+var input = document.getElementById(inputId);
+var label = document.getElementById(labelId);
+label.textContent = input.value;
+}
 
-                        @isset($isVoted)
-                        @if ($isVoted->user_id == $userId || $isVoted->con_id == $candidate->id)
-                        <td class="text-center" style="vertical-align: middle">
-                            <button disabled class="btn btn-primary">Voted</button>
-                        </td>
-                        @endif
-                        @endisset
+// Attach event listeners to the range inputs
+var minPriceInput = document.getElementById('min_price');
+var maxPriceInput = document.getElementById('max_price');
 
-                        @empty($isVoted)
-                        <td class="text-center" style="vertical-align: middle">
-                            {{-- <button class="btn btn-primary" wire:click='addVote({{ $candidate->id }})'>Vote</button> --}}
-                            <a href="{{url('addVote',$candidate->id)}}" class="btn btn-primary">Vote</a>
-                        </td>
-                        @endempty
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </form>
-</div>
+minPriceInput.addEventListener('input', function() {
+updateRangeValue('min_price', 'min_price_label');
+});
+
+maxPriceInput.addEventListener('input', function() {
+updateRangeValue('max_price', 'max_price_label');
+});
+
+</script> --}}
 
 
 

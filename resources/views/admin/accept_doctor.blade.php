@@ -19,6 +19,10 @@
     @include('admin.sidebar')
     <!-- partial -->
     @include('admin.navbar')
+
+    {{-- <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" method="GET" action="{{ route('acceptview') }}">
+        <input type="text" class="form-control" placeholder="Search" name="search" value="{{ $search }}">
+    </form> --}}
     <!-- partial -->
 
     <div class="container-fluid page-body-wrapper">

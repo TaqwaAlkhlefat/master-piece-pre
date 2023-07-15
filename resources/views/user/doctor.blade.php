@@ -1,5 +1,7 @@
 <!-- Pricing Start -->
-<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+
+
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="doctorr">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-5">
@@ -7,9 +9,9 @@
                     <h5 class="position-relative d-inline-block text-primary text-uppercase">Pricing Plan</h5>
                     <h1 class="display-5 mb-0">We Offer Fair Prices for Dental Treatment</h1>
                 </div>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo eirmod magna dolore erat amet</p>
+                <p class="mb-4">Our commitment extends beyond facilitating appointments and recognizing outstanding dentists. We aim to be your trusted source of dental information and guidance. Our comprehensive resources provide valuable insights into oral health, dental care tips, and the latest advancements in the field. We want to empower you to make informed decisions and maintain optimal dental health for yourself and your loved ones.</p>
                 <h5 class="text-uppercase text-primary wow fadeInUp" data-wow-delay="0.3s">Call for Appointment</h5>
-                <h1 class="wow fadeInUp" data-wow-delay="0.6s">+012 345 6789</h1>
+                <h1 class="wow fadeInUp" data-wow-delay="0.6s">+962 772 945510</h1>
             </div>
             <div class="col-lg-7">
                 <div class="owl-carousel price-carousel wow zoomIn" data-wow-delay="0.9s">
@@ -27,8 +29,8 @@
                             <hr class="text-primary w-50 mx-auto mt-0">
                             <div class="d-flex justify-content-between mb-3"><span>{{ $doctors ->specialization }}</span><i class="fa fa-check text-primary pt-1"></i></div>
                             <div class="d-flex justify-content-between mb-3"><span>Professional Dentist</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>24/7 Call Support</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Appointment</a>
+                            <div class="d-flex justify-content-between mb-2"><span>{{ $doctors ->address }}</span><i class="fa fa-check text-primary pt-1"></i></div>
+                            <a href="{{ route('appointment') }}" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Appointment</a>
                         </div>
                     </div>
                     @endif

@@ -44,6 +44,7 @@ Route::get('/appointment', [HomeController::class, 'show'])->name('appointment')
 Route::get('/dentline', [HomeController::class, 'store'])->name('dentline');
 Route::get('/contact', [HomeController::class, 'cont'])->name('contact');
 Route::get('/vote', [HomeController::class, 'vote'])->name('vote');
+// Route::get('/ourdoctor', [HomeController::class, 'ourdoctor'])->name('ourdoctor');
 
 
 
@@ -60,6 +61,13 @@ Route::match(['GET', 'POST'], '/logout', function () {
 Route::get('/acceptDoctor/{id}', [AdminController::class, 'acceptDoctor'])->name('acceptDoctor');
 
 Route::get('/deletDoctor/{id}', [AdminController::class, 'deletDoctor'])->name('deletDoctor');
+
+Route::get('/deletClient/{id}', [AdminController::class, 'deletClient'])->name('deletClient');
+
+Route::get('/acceptview', [AdminController::class, 'acceptview'])->name('acceptview');
+
+
+
 
 
 
@@ -79,6 +87,7 @@ Route::get('/changeinformation', [DoctorController::class, 'changeinformation'])
 Route::post('/editdoctor/{id}', [DoctorController::class, 'editdoctor'])->name('editdoctor');
 
 
+// Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 
 
 
@@ -130,3 +139,16 @@ Route::get('/condidate_view', [AdminController::class, 'condidateview']);
 Route::post('/upload_condidate', [AdminController::class, 'upload_condidate'])->name('upload_condidate');
 
 Route::get('/deletcandidate/{id}', [AdminController::class, 'deletcandidate'])->name('deletcandidate');
+
+
+// add vote  user
+
+
+Route::match(['get', 'post'],'/addVote/{id}', [HomeController::class, 'addVote'])->name('addVote');
+
+// for confirm delete
+
+// Route::get('/delete-client/{id}', [AdminController::class, 'deletClient'])->name('delete.client');
+// Route::get('/back', function () {
+//     return redirect()->back();
+// })->name('back');

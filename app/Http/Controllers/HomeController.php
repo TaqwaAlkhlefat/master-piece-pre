@@ -10,11 +10,41 @@ use App\Models\User;
 
 use App\Models\Appointment;
 
+use App\Models\Votes;
+
 use App\Models\Condidate;
 
 
 class HomeController extends Controller
 {
+    public function getUserCount()
+    {
+        $userCount = User::count();
+
+        return $userCount;
+    }
+
+    public function getDoctorCount()
+    {
+        $doctorCount = User::where('usertype', 3)->count();
+
+        return $doctorCount;
+    }
+
+    public function getAppointmentCount()
+    {
+        $appointmentCount = Appointment::count();
+
+        return $appointmentCount;
+    }
+
+    public function getVoteCount()
+    {
+        $voteCount = Votes::count();
+
+        return $voteCount;
+    }
+
     public function redirect()
     {
         if(Auth::id())
@@ -22,13 +52,23 @@ class HomeController extends Controller
             if(Auth::user()->usertype=='0')
             {
                 $doctor = user::where('usertype', 3)->get();
+                $highestPoints = Condidate::max('points');
+                $candidates = Condidate::where('points', $highestPoints)->get();
 
-                return view('user.home',compact('doctor'));
+                return view('user.home',compact('doctor','candidates'));
             }
             else if (Auth::user()->usertype=='1')
             {
+                $userCount = $this->getUserCount();
+                $doctorCount = $this->getDoctorCount();
+                $appointmentCount = $this->getAppointmentCount();
+                $voteCount = $this->getVoteCount();
+
+
+                $user = user::All();
                 $doctor = user::where('usertype', 3)->get();
-                return view('admin.home',compact('doctor'));
+
+                return view('admin.home',compact('userCount','doctorCount','appointmentCount','voteCount','doctor','user'));
             }
             else
             {
@@ -62,7 +102,10 @@ class HomeController extends Controller
         {
         $doctor = user::where('usertype', 3)->get();
 
-        return view('user.home',compact('doctor'));
+        $highestPoints = Condidate::max('points');
+        $candidates = Condidate::where('points', $highestPoints)->get();
+
+        return view('user.home',compact('doctor','candidates'));
         }
     }
 
@@ -89,6 +132,45 @@ public function vote()
 
     return view('user.vote', compact('candidates', 'userId'));
 }
+
+
+public function addVote($id)
+{
+    if (!Auth::check()) {
+        return redirect()->route('login');
+    }
+
+    // Check if vote_limit is not zero
+    $users = User::findOrFail(Auth::user()->id);
+    if ($users->vote_limit != 0) {
+        // Increment candidate's points
+        $addvote = Condidate::findOrFail($id);
+        $addvote->points = $addvote->points + 1;
+        $addvote->save();
+
+        // Save the vote
+        $votes = new Votes();
+        $votes->user_id = Auth::user()->id;
+        $votes->con_id = $id;
+        $votes->save();
+
+        // Deduct one from vote_limit
+        $users->vote_limit = $users->vote_limit - 1;
+        $users->voted = true;
+        $users->save();
+
+        // Check if vote_limit is now zero
+        if ($users->vote_limit == 0) {
+            return redirect()->back()->with('message', 'You have exhausted the number of votes allowed for this month');
+        }
+
+        return redirect()->back()->with('message', 'The vote was successful');
+    }
+
+    return redirect()->back()->with('message', 'You have already used all your votes for this month');
+}
+
+
 
 
     public function appointmentt(Request $request)
@@ -149,5 +231,49 @@ public function vote()
 
         return redirect()->back();
     }
+
+
+// public function ourdoctor()
+// {
+
+// }
+
+// public function ourdoctor(Request $request)
+//     {
+
+
+//         $category = $request->input('category_id ');
+//         $type = $request->input('status');
+//         $startPrice = User::min('session_price');
+//         $endPrice = User::max('session_price');
+
+//         $query = User::query();
+
+//         if ($category) {
+//             $query->where('category_id ', $category);
+//         }
+
+//         if ($type) {
+//             $query->where('status', $type);
+//         }
+
+//         if ($startPrice && $endPrice) {
+//             $query->whereBetween('product_price', [$startPrice, $endPrice]);
+//         }
+
+//         $users = $query->get();
+//         $users = User::all();
+//         // $paginationLinks = $products->links('pagination::bootstrap-4');
+
+
+
+
+//         $categories = User::all();
+//         // return view('your-view', compact('products', 'paginationLinks'));
+//         return view('user.ourdoctor', compact('user','categories'));
+
+//     }
+
+
 
 }
