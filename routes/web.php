@@ -44,7 +44,7 @@ Route::get('/appointment', [HomeController::class, 'show'])->name('appointment')
 Route::get('/dentline', [HomeController::class, 'store'])->name('dentline');
 Route::get('/contact', [HomeController::class, 'cont'])->name('contact');
 Route::get('/vote', [HomeController::class, 'vote'])->name('vote');
-// Route::get('/ourdoctor', [HomeController::class, 'ourdoctor'])->name('ourdoctor');
+Route::get('/ourdoctor', [HomeController::class, 'ourdoctor'])->name('ourdoctor');
 
 
 

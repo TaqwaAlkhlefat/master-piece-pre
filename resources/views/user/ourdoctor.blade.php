@@ -30,6 +30,41 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            width: 16rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin: 30px;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-title {
+            margin-bottom: 10px;
+        }
+
+        .card-text span {
+            display: block;
+        }
+
+        .card-footer {
+            margin-top: auto;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -139,48 +174,44 @@
 
 
 
-{{-- <div class="search_section" style="margin-top: 10px;">
+<div class="container-fluid page-body-wrapper">
+    <div class="container" align="center" style="padding-top: 30px; display: flex; flex-wrap: wrap; justify-content: center;">
+        <form action="{{ route('ourdoctor') }}" method="GET">
+            @csrf
+            <div class="container" align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
+                <input type="text" name="name" placeholder="Search by name">
+                <input type="text" name="address" placeholder="Search by address">
+                <input type="number" name="price" placeholder="Search by price">
+                <input type="text" name="specialization" placeholder="Search by specialization">
+                <button type="submit" class="btn text-dark" data-bs-toggle="modal"><i class="fa fa-search"></i></button>
+                <a href="{{ route('ourdoctor') }}" class="btn btn-secondary">Clear Filters</a>
+            </div>
+        </form>
+        <div class="card-container">
+            @foreach ($doctor as $doctors)
+            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                <img class="img-fluid rounded" src="doctorimage/{{ $doctors->image }}" alt=""style="max-height: 230px;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <div>{{ $doctors->name }}</div>
+                    </h5>
+                    <p class="card-text">
+                        <span>Specialization: {{ $doctors->specialization }}</span>
+                        <span>Address: {{ $doctors->address }}</span>
+                        <span>Price: {{ $doctors->session_price }} JD </span>
+                    </p>
+                    <div class="card-footer">
+                        <a href="{{ route('appointment') }}" class="btn btn-primary">Appointment</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
-    <form id="searchForm" action="/search#our_offers" method="POST" enctype="multipart/form-data">
-       @csrf
-       <div class="container">
-           <div class="row">
-             <div class="col-md-12">
-               <h1 class="search_taital">Search Your Best Offers</h1>
-               <div class="container">
-                 <div class="select_box_section">
-                   <div class="select_box_main">
-                     <div class="row">
-                       <div class="col-md-3 select-outline">
-                         <select name="category" id="categorySelect" class="form-select">
-                           <option value="" disabled selected>Any Category</option>
-                           @foreach($categories as $category)
-                           <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                           @endforeach
-                         </select>
-                       </div>
-                       <div class="col-md-4 select-outline">
-                         <label for="min_price"  class="form-label price">Minimum Price:</label>
-                         <input type="range" class="form-range" id="min_price" name="min_price" min="0" max="300" step="20" value="0" class="form-range">
-                         <span id="min_price_label"></span>
-                               <br>
-                         <label for="max_price" class="form-label price">Maximum Price:</label>
-                         <input type="range" class="form-range" id="max_price" name="max_price" min="0" max="300" step="20" value="300" class="form-range">
-                         <span id="max_price_label"></span>
-                       </div>
-                       <div class="col-md-2">
-                         <div class="search_btn"><button id="searchBtn" type="submit" class="btn btn-light">Search Now</button></div>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <!-- select box section end -->
-             </div>
-           </div>
-       </div>
-     </form>
- </div> --}}
+
+
 
 
 <!-- gallery section start -->

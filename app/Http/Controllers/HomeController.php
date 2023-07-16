@@ -238,41 +238,39 @@ public function addVote($id)
 
 // }
 
-// public function ourdoctor(Request $request)
-//     {
+public function ourdoctor(Request $request)
+{
+    $query = User::where('usertype', 3); // Base query for doctors
+
+    // Filter by name
+    if ($request->has('name')) {
+        $query->where('name', 'like', '%' . $request->input('name') . '%');
+    }
+
+    // Filter by address
+    if ($request->has('address')) {
+        $query->where('address', 'like', '%' . $request->input('address') . '%');
+    }
+
+    // Filter by price
+    if ($request->has('price')) {
+        $query->where('session_price', $request->input('price'));
+    }
+
+    // Filter by specialization
+    if ($request->has('specialization')) {
+        $query->where('specialization', 'like', '%' . $request->input('specialization') . '%');
+    }
+
+    $doctor = $query->get();
+
+    // Get all doctors when no filters are applied
+    $allDoctor = User::where('usertype', 3)->get();
+
+    return view('user.ourdoctor', compact('doctor', 'allDoctor'));
+}
 
 
-//         $category = $request->input('category_id ');
-//         $type = $request->input('status');
-//         $startPrice = User::min('session_price');
-//         $endPrice = User::max('session_price');
-
-//         $query = User::query();
-
-//         if ($category) {
-//             $query->where('category_id ', $category);
-//         }
-
-//         if ($type) {
-//             $query->where('status', $type);
-//         }
-
-//         if ($startPrice && $endPrice) {
-//             $query->whereBetween('product_price', [$startPrice, $endPrice]);
-//         }
-
-//         $users = $query->get();
-//         $users = User::all();
-//         // $paginationLinks = $products->links('pagination::bootstrap-4');
-
-
-
-
-//         $categories = User::all();
-//         // return view('your-view', compact('products', 'paginationLinks'));
-//         return view('user.ourdoctor', compact('user','categories'));
-
-//     }
 
 
 

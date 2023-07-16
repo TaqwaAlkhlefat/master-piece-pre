@@ -82,7 +82,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
                 <a href="{{ route('home') }}" class="nav-item nav-link">Home</a>
-                {{-- <a href="{{ route('ourdoctor') }}" class="nav-item nav-link">Our Doctor</a> --}}
+                <a href="{{ route('ourdoctor') }}" class="nav-item nav-link">Our Doctor</a>
                 {{-- <a href="{{ route('dentline') }}" class="nav-item nav-link">DentLine</a> --}}
                 {{-- <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a> --}}
                 <a href="{{ route('vote') }}" class="nav-item nav-link">Doctors vote</a>
