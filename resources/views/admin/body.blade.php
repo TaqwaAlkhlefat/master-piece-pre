@@ -325,8 +325,18 @@
                       <td> {{ $users->email }} </td>
                       <td> {{ $users->phone }} </td>
                       <td> {{ $users->address }} </td>
-                      <td> {{ $users->usertype }} </td>
-                      <td> {{ $users->created_at }} </td>
+                      <td>
+                        @if ($users->usertype == 0)
+                            User
+                        @elseif ($users->usertype == 1)
+                            Admin
+                        @elseif ($users->usertype == 3)
+                            Doctor
+                        @else
+                            Unknown
+                        @endif
+                    </td>
+                    <td> {{ $users->created_at }} </td>
                       <td>
                         <div class="badge badge-outline-danger"> <a href="{{url('deletClient',$users->id)}}" style="text-decoration: none; color:red">Delete</a></div>
                       </td>
@@ -342,8 +352,8 @@
       </div>
 
 
-      <div class="row">
-        <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+      {{-- <div class="row"> --}}
+        {{-- <div class="col-md-6 col-xl-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-row justify-content-between">
@@ -410,7 +420,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
         {{-- <div class="col-md-6 col-xl-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">

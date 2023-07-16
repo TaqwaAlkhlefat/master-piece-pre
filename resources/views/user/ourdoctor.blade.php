@@ -178,7 +178,7 @@
     <div class="container" align="center" style="padding-top: 30px; display: flex; flex-wrap: wrap; justify-content: center;">
         <form action="{{ route('ourdoctor') }}" method="GET">
             @csrf
-            <div class="container" align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
+            <div class="container" align="center" style="padding-top: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
                 <input type="text" name="name" placeholder="Search by name">
                 <input type="text" name="address" placeholder="Search by address">
                 <input type="number" name="price" placeholder="Search by price">

@@ -272,6 +272,30 @@ public function ourdoctor(Request $request)
 
 
 
+// public function filterClients(Request $request)
+// {
+//     $query = User::query();
+
+//     // Filter by name
+//     if ($request->has('name')) {
+//         $query->where('name', 'like', '%' . $request->input('name') . '%');
+//     }
+
+//     // Filter by address
+//     if ($request->has('address')) {
+//         $query->where('address', 'like', '%' . $request->input('address') . '%');
+//     }
+
+//     // Filter by user type
+//     if ($request->has('usertype')) {
+//         $query->where('usertype', $request->input('usertype'));
+//     }
+
+//     $users = $query->get();
+
+//     return view('admin.home', compact('users'));
+// }
+
 
 
 }
