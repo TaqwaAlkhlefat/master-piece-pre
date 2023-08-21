@@ -30,6 +30,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 
 <body>
@@ -155,16 +156,21 @@
 
             <div class="row mt-5">
                 <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <input type="text" name="name" class="form-control" placeholder="Full name">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Full name">
                 </div>
                 <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-                    <input type="text" name="email" class="form-control" placeholder="Email address..">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Email address..">
                 </div>
                 <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+                    <label for="date" class="form-label">Select Date</label>
                     <input id="date" type="date" name="date" class="form-control">
                 </div>
+
                 <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
-                    <select name="doctor" id="departement" class="custom-select">
+                    <label for="departement" class="form-label">Doctor Name</label>
+                    <select name="doctor" id="departement" class="form-select">
                         <option>Select Doctor</option>
                         @foreach ($doctor as $doctors)
                         @if ($doctors->admin_approval == 1)
@@ -173,13 +179,17 @@
                         @endforeach
                     </select>
                 </div>
+
                 <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-                    <input type="time" name="time" class="form-control" placeholder="">
+                    <label for="time" class="form-label">Time</label>
+                    <input type="time" id="time" name="time" class="form-control" placeholder="">
                 </div>
                 <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-                    <input type="text" name="number" class="form-control" placeholder="Number..">
+                    <label for="number" class="form-label">Your Number</label>
+                    <input type="text" id="number" name="number" class="form-control" placeholder="Number..">
                 </div>
                 <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+                    <label for="message" class="form-label">Your Message</label>
                     <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter message.."></textarea>
                 </div>
             </div>

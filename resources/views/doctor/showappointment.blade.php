@@ -15,7 +15,7 @@
         <div class="row justify-content-center">
           <div class="col-12 col-sm-8 col-lg-6">
             <!-- Section Heading-->
-            <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+            <div class="section_heading text-center wow fadeInUp m-5" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
               <h3>My Appointment</h3>
               <div class="line"></div>
             </div>
@@ -38,7 +38,7 @@
                             <th>Status</th>
                             <th>Approved</th>
                             <th>Canceled</th>
-                            <th>Send Mail</th>
+                            {{-- <th>Send Mail</th> --}}
                         </tr>
 
                         @foreach ($data as $appoint )
@@ -51,17 +51,21 @@
                                 <td>{{ $appoint->message }}</td>
                                 <td>{{ $appoint->status }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{{url('approved',$appoint->id)}}">Approved</a>
+                                    <a class="btn btn-primary" href="{{url('approved',$appoint->id)}}">Approved</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-danger" href="{{url('canceled',$appoint->id)}}">Canceled</a>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <a class="btn btn-primary" href="{{url('emailview',$appoint->id)}}">Send Mail</a>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </table>
+                    <div>
+                        <!-- Back Button -->
+                        <a class="btn btn-secondary" href="javascript:history.back()">Back</a>
+                    </div>
                     {{-- <div><a href="{{url('doctor.home')}}" >Back</a> </div> --}}
                 </div>
                 <!-- Social Info-->

@@ -183,14 +183,16 @@
                         <a class="btn btn-light" href="{{ route('appointment') }}" >Appointment</a>
                     </div>
                 </div>
-                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s">
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s" style="padding: 20px">
                     <div class="bg-dark d-flex flex-column p-5" style="height: 300px;" align="center">
                         <h3 class="text-white mb-3">Doctor of the month</h3>
                         <div class="d-flex justify-content-between text-white mb-3">
                         </div>
                         @foreach ($candidates as $candidate)
                         <h5 class="text-white mb-3"> D. {{ $candidate->fname }} <img src="https://img.icons8.com/?size=1x&id=42021&format=png"> {{ $candidate->points }} Points</h5>
-                        <img src="doctorimage/{{ $candidate->image }}" style="max-height: 130px; max-width:130px; margin:auto" >
+                        <div style="border: 5px solid #091e3e; padding: 5px; max-height: 150px; max-width:150px; margin:auto;">
+                            <img src="doctorimage/{{ $candidate->image }}" style="max-height: 100%; max-width: 100%;" >
+                        </div>
                         @endforeach
                     </div>
                 </div>

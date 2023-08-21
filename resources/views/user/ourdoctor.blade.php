@@ -178,14 +178,27 @@
     <div class="container" align="center" style="padding-top: 30px; display: flex; flex-wrap: wrap; justify-content: center;">
         <form action="{{ route('ourdoctor') }}" method="GET">
             @csrf
-            <div class="container" align="center" style="padding-top: 10px; display: flex; flex-wrap: wrap; justify-content: center;">
-                <input type="text" name="name" placeholder="Search by name">
-                <input type="text" name="address" placeholder="Search by address">
-                <input type="number" name="price" placeholder="Search by price">
-                <input type="text" name="specialization" placeholder="Search by specialization">
-                <button type="submit" class="btn text-dark" data-bs-toggle="modal"><i class="fa fa-search"></i></button>
-                <a href="{{ route('ourdoctor') }}" class="btn btn-secondary">Clear Filters</a>
+            <div class="container" style="padding-top: 10px;">
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="name" placeholder="Search by name">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="address" placeholder="Search by address">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="price" placeholder="Search by price">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="specialization" placeholder="Search by specialization">
+                    </div>
+                    <div class="col-md-12 text-center m-5">
+                        <button type="submit" class="btn btn-secondary" data-bs-toggle="modal"><i class="fa fa-search"></i></button>
+                        <a href="{{ route('ourdoctor') }}" class="btn btn-secondary">Clear Filters</a>
+                    </div>
+                </div>
             </div>
+            
         </form>
         <div class="card-container">
             @foreach ($doctor as $doctors)
