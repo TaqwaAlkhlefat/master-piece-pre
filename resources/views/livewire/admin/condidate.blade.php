@@ -51,7 +51,7 @@
                                         <td><img src="{{ asset('storage') }}/{{ $condidate->image }}"
                                                 style="width:70px;height:70px;" alt=""></td>
                                         <td><button wire:click="edit({{ $condidate->id }})" class="btn btn-success">Edit</button></td>
-                                        <td><button class="btn btn-danger" wire:click.prevent='delete({{ $condidate->id }})'>Delete</button></td>
+                                        <td><button class="btn btn-danger" onclick="return confirm('are you sure to delete this')" wire:click.prevent='delete({{ $condidate->id }})'>Delete</button></td>
                                     </tr>
                                 @endforeach
                             @else

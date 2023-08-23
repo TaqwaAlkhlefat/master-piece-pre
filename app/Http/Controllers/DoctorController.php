@@ -173,4 +173,27 @@ public function changeinformation(Request $request)
 //     return redirect()->route('success');
 // }
 
+public function showClients(Request $request)
+{
+    $query = User::query();
+
+
+    if ($request->has('name')) {
+        $query->where('name', 'like', '%' . $request->input('name') . '%');
+    }
+
+    if ($request->has('address')) {
+        $query->where('address', 'like', '%' . $request->input('address') . '%');
+    }
+
+    if ($request->has('usertype')) {
+        $query->where('usertype', $request->input('usertype'));
+    }
+
+    $users = $query->get();
+
+    return view('admin.home', compact('users'));
+}
+
+
 }

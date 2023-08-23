@@ -299,6 +299,28 @@
             <div class="card-body">
               <h4 class="card-title">Our Clients</h4>
               <div class="table-responsive">
+                {{--  --}}
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="search-name" placeholder="Search by Name">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="search-address" placeholder="Search by Address">
+                    </div>
+                    <div class="col-md-3" >
+                        <select class="form-select" id="search-usertype" style="padding: 5px" style="background-color: black; color:white">
+                            <option value="">All User Types</option>
+                            <option value="0">User</option>
+                            <option value="3">Doctor</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-primary" id="search-button">Search</button>
+                    </div>
+                </div>
+
+
+                {{--  --}}
                 <table class="table">
                     <thead>
                         <tr>
@@ -597,3 +619,33 @@
 </div>
 <!-- page-body-wrapper ends -->
 </div>
+<script>
+document.getElementById('search-button').addEventListener('click', function () {
+    var searchName = document.getElementById('search-name').value.toLowerCase();
+    var searchAddress = document.getElementById('search-address').value.toLowerCase();
+    var searchUserType = document.getElementById('search-usertype').value;
+
+    // Loop through the table rows and hide/show based on search criteria
+    var tableRows = document.querySelectorAll('tbody tr');
+    tableRows.forEach(function (row) {
+        var name = row.querySelector('td:nth-child(1)').innerText.toLowerCase();
+        var address = row.querySelector('td:nth-child(4)').innerText.toLowerCase();
+        var userType = row.querySelector('td:nth-child(5)').innerText;
+
+        var nameMatch = name.includes(searchName);
+        var addressMatch = address.includes(searchAddress);
+        var userTypeMatch = searchUserType === '' || (searchUserType === '3' && userType === 'Doctor') || (searchUserType === '0' && userType === 'User');
+
+        if (nameMatch && addressMatch && userTypeMatch) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
+//     document.getElementById('search-button').addEventListener('click', function () {
+//     console.log("Search button clicked"); // for debugging
+// });
+
+</script>

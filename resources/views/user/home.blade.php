@@ -30,6 +30,8 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"> --}}
+
 </head>
 
 <body>
@@ -93,7 +95,7 @@
             @auth
 
             <a href="{{ route('myappointment') }}"class="btn btn-primary py-2 px-4 ms-3">My Appointment</a>
-
+            <span> &nbsp &nbsp &nbsp <strong> Wellcome {{ Auth::user()->name }} !</strong></span>
             <x-app-layout>
             </x-app-layout>
             @else
@@ -139,7 +141,7 @@
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your Teeth Healthy</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Dental Treatment</h1>
                             <a href="{{ route('appointment') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                            <a href="{{ route('vote') }}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Vote</a>
                         </div>
                     </div>
                 </div>
@@ -150,7 +152,7 @@
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your Teeth Healthy</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Dental Treatment</h1>
                             <a href="{{ route('appointment') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                            <a href="{{ route('vote') }}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Vote</a>
                         </div>
                     </div>
                 </div>

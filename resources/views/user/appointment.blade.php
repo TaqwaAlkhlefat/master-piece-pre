@@ -156,20 +156,23 @@
 
             <div class="row mt-5">
                 <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="name" class="form-label">Your Name</label>
+                    <label for="name" class="form-label">Your Name *</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="Full name">
+                    <div class="error-message" id="name-error"></div>
                 </div>
                 <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-                    <label for="email" class="form-label">Email address</label>
+                    <label for="email" class="form-label">Email address *</label>
                     <input type="text" name="email" id="email" class="form-control" placeholder="Email address..">
+                    <div class="error-message" id="email-error"></div>
                 </div>
                 <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-                    <label for="date" class="form-label">Select Date</label>
+                    <label for="date" class="form-label">Select Date *</label>
                     <input id="date" type="date" name="date" class="form-control">
+                    <div class="error-message" id="date-error"></div>
                 </div>
 
                 <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
-                    <label for="departement" class="form-label">Doctor Name</label>
+                    <label for="departement" class="form-label">Doctor Name *</label>
                     <select name="doctor" id="departement" class="form-select">
                         <option>Select Doctor</option>
                         @foreach ($doctor as $doctors)
@@ -178,15 +181,18 @@
                         @endif
                         @endforeach
                     </select>
+                    <div class="error-message" id="doctor-error"></div>
                 </div>
 
                 <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-                    <label for="time" class="form-label">Time</label>
+                    <label for="time" class="form-label">Time *</label>
                     <input type="time" id="time" name="time" class="form-control" placeholder="">
+                    <div class="error-message" id="time-error"></div>
                 </div>
                 <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
-                    <label for="number" class="form-label">Your Number</label>
+                    <label for="number" class="form-label">Your Number *</label>
                     <input type="text" id="number" name="number" class="form-control" placeholder="Number..">
+                    <div class="error-message" id="number-error"></div>
                 </div>
                 <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
                     <label for="message" class="form-label">Your Message</label>
@@ -275,7 +281,7 @@
     <script src="lib/twentytwenty/jquery.event.move.js"></script>
     <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
 
-    <script>
+    {{-- <script>
         function validateForm() {
             // Get the form inputs
             var name = document.forms["main-form"]["name"].value;
@@ -290,7 +296,67 @@
                 return false; // Prevent form submission
             }
         }
+    </script> --}}
+
+    <script>
+        function validateForm() {
+            // Reset error messages
+            document.getElementById('name-error').innerText = '';
+            document.getElementById('email-error').innerText = '';
+            document.getElementById('date-error').innerText = '';
+            document.getElementById('doctor-error').innerText = '';
+            document.getElementById('time-error').innerText = '';
+            document.getElementById('number-error').innerText = '';
+
+            // Get field values
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var date = document.getElementById('date').value;
+            var doctor = document.getElementById('departement').value; // Updated to 'departement'
+            var time = document.getElementById('time').value;
+            var number = document.getElementById('number').value;
+
+            if (name.trim() === '') {
+                document.getElementById('name-error').innerText = 'Name is required';
+                document.getElementById('name-error').style.color = 'red';
+                return false; // Prevent form submission
+            }
+
+            if (email.trim() === '') {
+                document.getElementById('email-error').innerText = 'Email is required';
+                document.getElementById('email-error').style.color = 'red';
+                return false; // Prevent form submission
+            }
+
+            if (date.trim() === '') {
+                document.getElementById('date-error').innerText = 'Date is required';
+                document.getElementById('date-error').style.color = 'red';
+                return false; // Prevent form submission
+            }
+
+            if (doctor === 'Select Doctor') {
+                document.getElementById('doctor-error').innerText = 'Doctor Name is required';
+                document.getElementById('doctor-error').style.color = 'red';
+                return false; // Prevent form submission
+            }
+
+            if (time.trim() === '') {
+                document.getElementById('time-error').innerText = 'Time is required';
+                document.getElementById('time-error').style.color = 'red';
+                return false; // Prevent form submission
+            }
+
+            if (number.trim() === '') {
+                document.getElementById('number-error').innerText = 'Number is required';
+                document.getElementById('number-error').style.color = 'red';
+                return false; // Prevent form submission
+            }
+
+            // If all validations pass, the form will submit
+            return true;
+        }
     </script>
+
 
 <script language="javascript">
     $(document).ready(function() {

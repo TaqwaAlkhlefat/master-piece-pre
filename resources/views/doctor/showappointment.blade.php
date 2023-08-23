@@ -54,7 +54,7 @@
                                     <a class="btn btn-primary" href="{{url('approved',$appoint->id)}}">Approved</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" href="{{url('canceled',$appoint->id)}}">Canceled</a>
+                                    <a class="btn btn-danger" onclick="return confirm('are you sure to delete this')" href="{{url('canceled',$appoint->id)}}">Canceled</a>
                                 </td>
                                 {{-- <td>
                                     <a class="btn btn-primary" href="{{url('emailview',$appoint->id)}}">Send Mail</a>

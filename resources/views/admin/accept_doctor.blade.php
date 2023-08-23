@@ -57,7 +57,7 @@
                 </ul>
                 <div class="card-body">
                     <a href="{{url('acceptDoctor',$doctors->id)}}" class="btn btn-success btn-sm">Accept</a>
-                    <a href="{{url('deletDoctor',$doctors->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{url('deletDoctor',$doctors->id)}}" onclick="return confirm('are you sure to delete this')" class="btn btn-danger btn-sm">Delete</a>
                 </div>
               </div>
             </div>

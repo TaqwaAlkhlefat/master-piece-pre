@@ -142,6 +142,9 @@ Route::post('/upload_condidate', [AdminController::class, 'upload_condidate'])->
 
 Route::get('/deletcandidate/{id}', [AdminController::class, 'deletcandidate'])->name('deletcandidate');
 
+Route::get('/showClients', [AdminController::class, 'showClients'])->name('showClients');
+
+
 
 // add vote  user
 
@@ -154,3 +157,4 @@ Route::match(['get', 'post'],'/addVote/{id}', [HomeController::class, 'addVote']
 // Route::get('/back', function () {
 //     return redirect()->back();
 // })->name('back');
+
