@@ -25,10 +25,21 @@
     </form> --}}
     <!-- partial -->
 
+
     <div class="container-fluid page-body-wrapper">
-      <div class="container" align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
-        <form>
-          @csrf
+        <div class="container" align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
+          <form action="{{ route('searchDoctors') }}" method="GET"> <!-- Add the form here -->
+            @csrf
+            <div class="form-group"> <!-- Form group for the search input -->
+              <label for="admin_approval">Search by Approval Status:</label>
+              <select name="admin_approval" class="form-control">
+                <option value="">All</option>
+                <option value="0">In Process</option>
+                <option value="1">Approved</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
           <div class="container" align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
             @foreach ($doctor as $doctors)
             <div class="card-container" style="max-height: 1600px; max-width: 1600px;">
@@ -62,8 +73,7 @@
               </div>
             </div>
             @endforeach
-          </div>
-        </form>
+        </div>
       </div>
     </div>
 

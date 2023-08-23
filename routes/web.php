@@ -106,6 +106,16 @@ Route::get('/emailview/{id}', [DoctorController::class, 'emailview'])->name('ema
 
 Route::post('/sendemail/{id}', [DoctorController::class, 'sendemail'])->name('sendemail');
 
+//
+
+Route::put('/update-phone/{id}',  [DoctorController::class, 'updatePhone'])->name('update.phone');
+Route::put('/update-session-price/{id}', [DoctorController::class, 'updateSessionPrice'])->name('update.session_price');
+Route::put('/update-address/{id}',  [DoctorController::class, 'updateAddress'])->name('update.address');
+Route::put('/update-experience/{id}',  [DoctorController::class, 'updateExperience'])->name('update.experience');
+
+
+//
+
 
 // For Voting System
 
@@ -143,6 +153,9 @@ Route::post('/upload_condidate', [AdminController::class, 'upload_condidate'])->
 Route::get('/deletcandidate/{id}', [AdminController::class, 'deletcandidate'])->name('deletcandidate');
 
 Route::get('/showClients', [AdminController::class, 'showClients'])->name('showClients');
+
+Route::get('/searchDoctors',  [AdminController::class,'acceptview'])->name('searchDoctors');
+
 
 
 

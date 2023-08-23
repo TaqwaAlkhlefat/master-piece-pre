@@ -195,5 +195,88 @@ public function showClients(Request $request)
     return view('admin.home', compact('users'));
 }
 
+//
+
+
+public function updatePhone(Request $request, $id)
+{
+    $doctor = User::find($id);
+    if (!$doctor) {
+        // Handle the case where the doctor is not found
+        return redirect()->back()->with('error', 'Doctor not found');
+    }
+
+    // Validate the phone input if needed
+    $request->validate([
+        'phone' => 'required|string|max:255', // Add any validation rules you need
+    ]);
+
+    // Update the phone field
+    $doctor->phone = $request->input('phone');
+    $doctor->save();
+
+    return redirect()->back()->with('success', 'Phone number updated successfully');
+}
+
+public function updateSessionPrice(Request $request, $id)
+{
+    $doctor = User::find($id);
+    if (!$doctor) {
+        // Handle the case where the doctor is not found
+        return redirect()->back()->with('error', 'Doctor not found');
+    }
+
+    // Validate the session price input if needed
+    $request->validate([
+        'session_price' => 'required|numeric', // Add any validation rules you need
+    ]);
+
+    // Update the session price field
+    $doctor->session_price = $request->input('session_price');
+    $doctor->save();
+
+    return redirect()->back()->with('success', 'Session price updated successfully');
+}
+
+public function updateAddress(Request $request, $id)
+{
+    $doctor = User::find($id);
+    if (!$doctor) {
+        // Handle the case where the doctor is not found
+        return redirect()->back()->with('error', 'Doctor not found');
+    }
+
+    // Validate the address input if needed
+    $request->validate([
+        'address' => 'required|string|max:255', // Add any validation rules you need
+    ]);
+
+    // Update the address field
+    $doctor->address = $request->input('address');
+    $doctor->save();
+
+    return redirect()->back()->with('success', 'Address updated successfully');
+}
+
+public function updateExperience(Request $request, $id)
+{
+    $doctor = User::find($id);
+    if (!$doctor) {
+        // Handle the case where the doctor is not found
+        return redirect()->back()->with('error', 'Doctor not found');
+    }
+
+    // Validate the address input if needed
+    $request->validate([
+        'experience' => 'required', // Add any validation rules you need
+    ]);
+
+    // Update the experience field
+    $doctor->experience = $request->input('experience');
+    $doctor->save();
+
+    return redirect()->back()->with('success', 'Experience updated successfully');
+}
+
 
 }

@@ -21,25 +21,33 @@ class AdminController extends Controller
     //     return view('admin.home', compact('userCount'));
     // }
 
-    public function acceptview()
+    public function acceptview(Request $request)
     {
-        $doctor = user::where('usertype', 3)->get();
+        $query = User::where('usertype', 3);
 
-        if(Auth::id())
-        {
-            if(Auth::user()->usertype==1)
-            {
-                return view('admin.accept_doctor',compact('doctor'));
-            }
-            else{
+        if (Auth::id()) {
+            if (Auth::user()->usertype == 1) {
+                // Check if a search query parameter is present
+                if ($request->has('admin_approval')) {
+                    $adminApproval = $request->input('admin_approval');
+
+                    // Filter doctors based on admin_approval status
+                    if ($adminApproval !== '') {
+                        $query->where('admin_approval', $adminApproval);
+                    }
+                }
+
+                $doctor = $query->get();
+
+                return view('admin.accept_doctor', compact('doctor'));
+            } else {
                 return redirect()->back();
             }
-        }
-        else
-        {
+        } else {
             return redirect('login');
         }
     }
+
 
     public function condidateview()
     {

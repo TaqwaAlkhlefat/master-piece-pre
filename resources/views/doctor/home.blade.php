@@ -33,144 +33,150 @@
 
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                    @foreach ($doctor as $doctors)
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="doctorimage/{{ $doctors->image }}" alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4>D. {{ $doctors->name }}</h4>
-                      <p class="text-secondary mb-1">{{ $doctors->specialization }}</p>
-                      <p class="text-muted font-size-sm">{{ $doctors->experience }} Year's Experience</p>
+                <div class="card">
+                    <div class="card-body">
+                        @foreach ($doctor as $doctors)
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="doctorimage/{{ $doctors->image }}" alt="Admin" class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4>D. {{ $doctors->name }}</h4>
+                                <p class="text-secondary mb-1">{{ $doctors->specialization }}</p>
+                                <p class="text-muted font-size-sm">{{ $doctors->experience }} Year's Experience</p>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
-                  </div>
-                  @endforeach
                 </div>
-              </div>
-              <div class="card mt-3">
-                <ul class="list-group list-group-flush">
-                    @if($doctors ->admin_approval =='0')
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0"><p class="m-b-10 f-w-600" style="color:black; font-size: 30px; line-height: 2;">Hello Doctor <span> {{ $doctors->name }} </span>, please wait for the admin approval to join the doctors department</p></h6>
-                  </li>
-
-                  @else
-
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0"><a class="" href="{{ url('showappointment') }}" style="text-decoration: none;">
-                        <p class="m-b-10 f-w-600" style="color:black; font-size: 30px">Show My Appointment</p>
-                        </a>
-                    </h6>
-                  </li>
-
-                  @endif
-
-                </ul>
-              </div> 
+                <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                        @if($doctors->admin_approval == '0')
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">
+                                <p class="m-b-10 f-w-600" style="color:black; font-size: 30px; line-height: 2;">
+                                    Hello Doctor <span> {{ $doctors->name }} </span>, please wait for the admin approval to join the doctors department
+                                </p>
+                            </h6>
+                        </li>
+                        @else
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">
+                                <a class="" href="{{ url('showappointment') }}" style="text-decoration: none;">
+                                    <p class="m-b-10 f-w-600" style="color:black; font-size: 30px">Show My Appointment</p>
+                                </a>
+                            </h6>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
             </div>
             <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <hr>
-                  @foreach ($doctor as $doctors)
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{ $doctors->email }}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{ $doctors->phone }}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Session Price</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{ $doctors->session_price }} JD
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{ $doctors->address }}
-                    </div>
-                  </div>
-                  @endforeach
-                  <hr>
-                  
-                </div>
-              </div>
-
-               <div class="row gutters-sm">
-
-                @foreach ($doctor as $doctors)
-
-                <div class="col-sm-4 mb-4">
-                  <div class="card h-100">
+                <div class="card mb-3">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Medical License </i></h6>
-                      <img src="doctordocument/{{ $doctors->medical_license }}" alt="Admin" class="img-fluid" width="150">
+                        <hr>
+                        @foreach ($doctor as $doctors)
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ $doctors->email }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Phone</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <form method="POST" action="{{ route('update.phone', $doctors->id) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" name="phone" value="{{ $doctors->phone }}">
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Session Price</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <form method="POST" action="{{ route('update.session_price', $doctors->id) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" name="session_price" value="{{ $doctors->session_price }}">
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Address</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <form method="POST" action="{{ route('update.address', $doctors->id) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" name="address" value="{{ $doctors->address }}">
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Experience</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <form method="POST" action="{{ route('update.experience', $doctors->id) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" name="experience" value="{{ $doctors->experience }}">
+                                    <button class="btn btn-primary" type="submit">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                        @endforeach
+                        <hr>
                     </div>
-                  </div>
                 </div>
 
-                <div class="col-sm-4 mb-4">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Certification Documents </i></h6>
-                      <img src="doctordocument/{{ $doctors->certification_documents }}" alt="Admin" class="img-fluid" width="150">
+                <div class="row gutters-sm">
+                    @foreach ($doctor as $doctors)
+                    <div class="col-sm-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Medical License</i></h6>
+                                <img src="doctordocument/{{ $doctors->medical_license }}" alt="Admin" class="img-fluid" width="150">
+                            </div>
+                        </div>
                     </div>
-                  </div>
+
+                    <div class="col-sm-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Certification Documents</i></h6>
+                                <img src="doctordocument/{{ $doctors->certification_documents }}" alt="Admin" class="img-fluid" width="150">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Educational Certificates</i></h6>
+                                <img src="doctordocument/{{ $doctors->educational_certificates }}" alt="Admin" class="img-fluid" width="150">
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
-
-                <div class="col-sm-4 mb-4">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Educational Certificates </i></h6>
-                        <img src="doctordocument/{{ $doctors->educational_certificates }}" alt="Admin" class="img-fluid" width="150">
-                      </div>
-                    </div>
-                  </div>
-
-                  {{-- <div class="col-sm-6 mb-5">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Professional Affiliation Proof </i></h6>
-                        <img src="doctordocument/{{ $doctors->professional_affiliation_proof }}" alt="Admin" class="img-fluid" width="150">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-6 mb-5">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Continuing Education Certificates </i></h6>
-                        <img src="doctordocument/{{ $doctors->continuing_education_certificates }}" alt="Admin" class="img-fluid" width="150">
-                      </div>
-                    </div>
-                  </div> --}}
-
-                  @endforeach
-
-              </div> 
-
-
-
             </div>
-          </div>
+        </div>
+
+
 
         </div>
     </div>
