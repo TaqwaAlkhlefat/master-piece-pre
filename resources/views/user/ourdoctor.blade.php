@@ -181,25 +181,26 @@
             <div class="container" style="padding-top: 10px;">
                 <div class="row justify-content-center">
                     <div class="col-md-3">
-                        <input type="text" class="form-control" name="name" placeholder="Search by name">
+                        <input type="text" class="form-control" name="name" placeholder="Search by name" value="{{ request('name') }}">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" name="address" placeholder="Search by address">
+                        <input type="text" class="form-control" name="address" placeholder="Search by address" value="{{ request('address') }}">
                     </div>
                     <div class="col-md-3">
-                        <input type="number" class="form-control" name="price" placeholder="Search by price">
+                        <input type="number" class="form-control" name="price" placeholder="Search by price" value="{{ request('price') }}">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" name="specialization" placeholder="Search by specialization">
+                        <input type="text" class="form-control" name="specialization" placeholder="Search by specialization" value="{{ request('specialization') }}">
                     </div>
                     <div class="col-md-12 text-center m-5">
-                        <button type="submit" class="btn btn-secondary" data-bs-toggle="modal"><i class="fa fa-search"></i></button>
+                        <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
                         <a href="{{ route('ourdoctor') }}" class="btn btn-secondary">Clear Filters</a>
                     </div>
                 </div>
             </div>
-            
         </form>
+
+
         <div class="card-container">
             @foreach ($doctor as $doctors)
             <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
@@ -227,67 +228,10 @@
 
 
 
-<!-- gallery section start -->
-
-{{-- <div class="gallery_section layout_padding" id="our_offers">
-   <div class="container">
-       <div class="row">
-           <div class="col-md-12">
-               <h1 class="gallery_taital">Our offers</h1>
-           </div>
-       </div>
-       <div class="gallery_section_2">
-           <div class="row mt-4">
-               @if ($products->isEmpty())
-               <p class="no-products">There is no result match this</p>
-               @else
-               @foreach ($products as $product)
-               <div class="col-md-4">
-                   <div class="gallery_box" style="height: 500px; margin:10px;">
-                       <div class="gallery_img" style="padding: 3px;">
-                           <img id="image_product" src="{{ asset('images/'. $product->image1) }}" style="width: 100%; height: 250px;">
-                       </div>
-                       <h3 class="types_text">{{ $product->name }}</h3>
-                       <p class="looking_text">Start per day ${{ $product->product_price }}</p>
-                       <div class="read_bt">
-                           <a href="{{ route('singleproduct', $product->id) }}">See the details</a>
-                       </div>
-                   </div>
-               </div>
-               @endforeach
-               @endif
-           </div>
-       </div>
-   </div>
-</div> --}}
 
 
 
 
-{{-- <script>
-function updateRangeValue(inputId, labelId) {
-var input = document.getElementById(inputId);
-var label = document.getElementById(labelId);
-label.textContent = input.value;
-}
-
-// Attach event listeners to the range inputs
-var minPriceInput = document.getElementById('min_price');
-var maxPriceInput = document.getElementById('max_price');
-
-minPriceInput.addEventListener('input', function() {
-updateRangeValue('min_price', 'min_price_label');
-});
-
-maxPriceInput.addEventListener('input', function() {
-updateRangeValue('max_price', 'max_price_label');
-});
-
-</script> --}}
-
-
-
-  {{--  --}}
 
 
      <!-- Footer Start -->

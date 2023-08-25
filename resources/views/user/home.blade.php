@@ -185,19 +185,58 @@
                         <a class="btn btn-light" href="{{ route('appointment') }}" >Appointment</a>
                     </div>
                 </div>
+
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s" style="padding: 20px">
                     <div class="bg-dark d-flex flex-column p-5" style="height: 300px;" align="center">
                         <h3 class="text-white mb-3">Doctor of the month</h3>
-                        <div class="d-flex justify-content-between text-white mb-3">
-                        </div>
-                        @foreach ($candidates as $candidate)
-                        <h5 class="text-white mb-3"> D. {{ $candidate->fname }} <img src="https://img.icons8.com/?size=1x&id=42021&format=png"> {{ $candidate->points }} Points</h5>
-                        <div style="border: 5px solid #091e3e; padding: 5px; max-height: 150px; max-width:150px; margin:auto;">
-                            <img src="doctorimage/{{ $candidate->image }}" style="max-height: 100%; max-width: 100%;" >
-                        </div>
-                        @endforeach
+                        <div class="d-flex justify-content-between text-white mb-3"></div>
+
+                        @php
+                        $candidatesWithPoints = $candidates->where('points', '>', 0)->sortByDesc('points');
+                        $candidatesWithZeroPoints = $candidates->where('points', '=', 0)->count();
+                        @endphp
+
+                        @if ($candidatesWithPoints->isEmpty())
+                            <h5 class="text-white mb-3">Vote Now</h5>
+                            <div style="border: 5px solid #091e3e; padding: 5px; max-height: 100px; max-width: 100px; margin: auto;">
+                                <img src="doctorimage/doctor.jpg" alt="Static Image" style="max-height: 100px; max-width: 100px;">
+                            </div>
+                        @else
+                            @php
+                            $pointsGroups = $candidatesWithPoints->groupBy('points');
+                            @endphp
+
+                            @foreach ($pointsGroups as $points => $candidatesGroup)
+                                <h5 class="text-white mb-3">
+                                    @foreach ($candidatesGroup as $index => $candidate)
+                                        D. {{ $candidate->fname }} <img src="https://img.icons8.com/?size=1x&id=42021&format=png"> {{ $candidate->points }} Points
+                                        @if ($index < count($candidatesGroup) - 1)
+                                            |
+                                        @endif
+                                    @endforeach
+                                </h5>
+                                <div class="d-flex justify-content-center">
+                                    @foreach ($candidatesGroup as $candidate)
+                                        <div style="border: 5px solid #091e3e; padding: 5px; max-height: 130px; max-width: 130px; margin: 5px;">
+                                            <img src="doctorimage/{{ $candidate->image }}" style="max-height: 100%; max-width: 100%;">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
+
+                            @if ($candidatesWithZeroPoints > 0)
+                                @for ($i = 0; $i < $candidatesWithZeroPoints; $i++)
+                                    <h5 class="text-white mb-3">Vote Now</h5>
+                                    <div style="border: 5px solid #091e3e; padding: 5px; max-height: 100px; max-width: 100px; margin: auto;">
+                                        <img src="doctorimage/doctor.jpg" alt="Static Image" style="max-height: 100px; max-width: 100px;">
+                                    </div>
+                                @endfor
+                            @endif
+                        @endif
                     </div>
                 </div>
+
+
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
                     <div class="bg-secondary d-flex flex-column p-5" style="height: 300px;">
                         <h3 class="text-white mb-3">Vote Now</h3>

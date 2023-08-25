@@ -242,24 +242,27 @@ public function ourdoctor(Request $request)
 {
     $query = User::where('usertype', 3); // Base query for doctors
 
-    // Filter by name
-    if ($request->has('name')) {
-        $query->where('name', 'like', '%' . $request->input('name') . '%');
+    $name = $request->input('name');
+    $address = $request->input('address');
+    $price = $request->input('price');
+    $specialization = $request->input('specialization');
+
+    // Query the doctors based on the search parameters
+
+    if ($name) {
+        $query->where('name', 'like', '%' . $name . '%');
     }
 
-    // Filter by address
-    if ($request->has('address')) {
-        $query->where('address', 'like', '%' . $request->input('address') . '%');
+    if ($address) {
+        $query->where('address', 'like', '%' . $address . '%');
     }
 
-    // Filter by price
-    if ($request->has('price')) {
-        $query->where('session_price', $request->input('price'));
+    if ($price) {
+        $query->where('session_price', '=', $price);
     }
 
-    // Filter by specialization
-    if ($request->has('specialization')) {
-        $query->where('specialization', 'like', '%' . $request->input('specialization') . '%');
+    if ($specialization) {
+        $query->where('specialization', 'like', '%' . $specialization . '%');
     }
 
     $doctor = $query->get();
@@ -269,6 +272,7 @@ public function ourdoctor(Request $request)
 
     return view('user.ourdoctor', compact('doctor', 'allDoctor'));
 }
+
 
 
 

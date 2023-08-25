@@ -171,3 +171,6 @@ Route::match(['get', 'post'],'/addVote/{id}', [HomeController::class, 'addVote']
 //     return redirect()->back();
 // })->name('back');
 
+// for start new vote
+
+Route::post('/start-new-vote', [AdminController::class, 'startNewVote'])->name('start.new.vote');

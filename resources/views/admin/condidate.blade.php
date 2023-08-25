@@ -6,6 +6,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" defer></script>
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
   <style type="text/css">
     label {
@@ -23,6 +25,9 @@
     <!-- partial -->
     @include('admin.navbar')
     <!-- partial -->
+
+
+
     <div class="container-fluid page-body-wrapper">
         <div class="container" align="center" style="padding-top: 100px;">
             @if (session()->has('message'))
@@ -72,7 +77,11 @@
                 </div>
             </form>
 
-        </div>
+            <div class="mt-4">
+                <button onclick="return confirm('are you sure to Start a new vote ?')" class="btn btn-primary">Start a new vote</button>
+            </div>
+
+        {{-- </div> --}}
 
         <br>
 
@@ -115,16 +124,38 @@
               </form>
             </div>
 
-
-        {{--  --}}
-
-
     </div>
+    </div>
+
+    {{--  --}}
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     @include('admin.script')
     <!-- End custom js for this page -->
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button.btn-primary").click(function () {
+                $.ajax({
+                    url: "{{ route('start.new.vote') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    success: function (response) {
+                        alert(response.message);
+                        // You can optionally reload the page or perform other actions here
+                    },
+                    error: function (error) {
+                        console.error(error);
+                        alert("Failed to start a new vote.");
+                    },
+                });
+            });
+        });
+    </script>
 
 
   </body>

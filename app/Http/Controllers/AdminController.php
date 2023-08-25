@@ -173,5 +173,17 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function startNewVote(Request $request)
+{
+    // Clear the "votes" table
+    DB::table('votes')->truncate();
+
+    // Update the "users" table
+    DB::table('users')->update(['vote_limit' => 1, 'voted' => 0]);
+
+    DB::table('candidates')->update(['points' => 0]);
+
+    return response()->json(['message' => 'New vote started successfully']);
+}
 
 }
