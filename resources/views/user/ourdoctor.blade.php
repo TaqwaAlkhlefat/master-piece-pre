@@ -203,6 +203,7 @@
 
         <div class="card-container">
             @foreach ($doctor as $doctors)
+            @if ($doctors->admin_approval == 1)
             <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
                 <img class="img-fluid rounded" src="doctorimage/{{ $doctors->image }}" alt=""style="max-height: 230px;">
                 <div class="card-body">
@@ -219,6 +220,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     </div>

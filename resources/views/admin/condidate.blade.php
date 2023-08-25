@@ -62,6 +62,11 @@
                                     <option value="1">Pediatric</option>
                                     <option value="2">Surgery</option>
                                     <option value="3">Orthodontics</option>
+                                    <option value="4">Periodontics</option>
+                                    <option value="5">Endodontics</option>
+                                    <option value="6">Prosthodontics</option>
+                                    <option value="7">Oral Pathology</option>
+                                    <option value="8">Oral Medicine</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -78,8 +83,9 @@
             </form>
 
             <div class="mt-4">
-                <button onclick="return confirm('are you sure to Start a new vote ?')" class="btn btn-primary">Start a new vote</button>
+                <button id="startVoteBtn" onclick="return confirm('are you sure to Start a new vote ?')" class="btn btn-primary">Start a new vote</button>
             </div>
+
 
         {{-- </div> --}}
 
@@ -134,10 +140,17 @@
     @include('admin.script')
     <!-- End custom js for this page -->
 
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
             $("button.btn-primary").click(function () {
+                // Trigger a click event on the "Start a new vote" button
+                $("#startVoteBtn").click();
+            });
+
+            // Handle the "Start a new vote" button click separately
+            $("#startVoteBtn").click(function () {
                 $.ajax({
                     url: "{{ route('start.new.vote') }}",
                     type: "POST",
@@ -156,6 +169,7 @@
             });
         });
     </script>
+
 
 
   </body>

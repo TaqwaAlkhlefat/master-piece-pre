@@ -153,7 +153,7 @@
         <div align="center" style="padding-top: 60px; display: flex; flex-wrap: wrap; justify-content: center;">
             @foreach ($candidates as $candidate)
             <div class="card-container" style="max-height: 600px; max-width: 600px;">
-                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem; border: 2px solid #ccc; border-radius: 5px; margin: 50px;">
+                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 18rem; border: 2px solid #ccc; border-radius: 5px; margin: 20px;">
                     <img class="img-fluid rounded" src="doctorimage/{{ $candidate->image }}" alt=""style="max-height: 230px;">
                     <div class="card-body" style="max-height: 180px;">
                         <h5 class="card-title">
