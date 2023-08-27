@@ -190,7 +190,6 @@
 
                         @empty($isVoted)
                         <td class="text-center" style="vertical-align: middle">
-                            {{-- <button class="btn btn-primary" wire:click='addVote({{ $candidate->id }})'>Vote</button> --}}
                             <a href="{{url('addVote',$candidate->id)}}" class="btn btn-primary">Vote</a>
                         </td>
                         @endempty

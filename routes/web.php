@@ -164,12 +164,7 @@ Route::get('/searchDoctors',  [AdminController::class,'acceptview'])->name('sear
 
 Route::match(['get', 'post'],'/addVote/{id}', [HomeController::class, 'addVote'])->name('addVote');
 
-// for confirm delete
 
-// Route::get('/delete-client/{id}', [AdminController::class, 'deletClient'])->name('delete.client');
-// Route::get('/back', function () {
-//     return redirect()->back();
-// })->name('back');
 
 // for start new vote
 
