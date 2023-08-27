@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,33 +11,29 @@
             width: 200px;
         }
     </style>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> --}}
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> --}}
-    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> --}}
+
 </head>
 <body>
-{{-- <h1>HI</h1> --}}
 
 @if (session()->has('message'))
     <div class="alert alert-success d-flex justify-content-between align-items-center">
         {{ session()->get('message') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-@endif
+@endif --}}
 
 {{--  --}}
-@foreach ($doctor as $doctors)
+{{-- @foreach ($doctor as $doctors)
 
 
 <div id="editProfileModal" class="modal">
     <div class="modal-content"  style="padding: 50px">
-        {{-- <span class="close">&times;</span> --}}
         <h2>Edit Profile</h2>
         <form id="editProfileForm" method="POST" action="{{ route('editdoctor', ['id' => Auth::user()->id]) }}" class="edit-profile-form" enctype="multipart/form-data">
-            @csrf
+            @csrf --}}
             {{-- @method('PUT') --}}
             <!-- Add form fields for editing profile information -->
-            <div class="form-group" style="padding: 15px;">
+            {{-- <div class="form-group" style="padding: 15px;">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" value="{{ $doctors->name }}" class="form-control">
             </div>
@@ -97,10 +93,7 @@
                 <img src="https://img.icons8.com/?size=1x&id=24373&format=png" height="30px" style="margin-right: 5px;">
                 <input type="file" id="image" name="image" class="form-control">
             </div>
-            {{-- <div class="form-group" style="padding: 15px;">
-                <label for="password">New Password:</label>
-                <input type="text" id="password" name="password" value="" class="form-control" placeholder="Enter new password">
-            </div> --}}
+
             <div class="form-group">
                 <button type="submit" class="btn mybutton">Save</button>
             </div>
@@ -109,7 +102,8 @@
 </div>
 
 
-@endforeach
+@endforeach --}}
+
 {{--  --}}
 
 

@@ -56,9 +56,9 @@
                                 <td>
                                     <a class="btn btn-danger" onclick="return confirm('are you sure to delete this')" href="{{url('canceled',$appoint->id)}}">Canceled</a>
                                 </td>
-                                {{-- <td>
-                                    <a class="btn btn-primary" href="{{url('emailview',$appoint->id)}}">Send Mail</a>
-                                </td> --}}
+                                <td>
+                                    <a class="btn btn-primary" href="{{url('emailview',$appoint->id)}}">Mail</a>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
@@ -66,9 +66,7 @@
                         <!-- Back Button -->
                         <a class="btn btn-secondary" href="javascript:history.back()">Back</a>
                     </div>
-                    {{-- <div><a href="{{url('doctor.home')}}" >Back</a> </div> --}}
                 </div>
-                <!-- Social Info-->
               </div>
       </div>
       {{-- <h4><x-app-layout></x-app-layout></h4> --}}

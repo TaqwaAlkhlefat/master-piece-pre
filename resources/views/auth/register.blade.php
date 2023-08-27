@@ -132,12 +132,7 @@
             <!-- Hidden input field to store the usertype value -->
             <input type="hidden" id="usertype" name="usertype" value="0">
 
-            {{-- <div id="doctor-fields-usertype" class="mt-4">
-                <label for="usertype" class="flex items-center">
-                    <input id="usertype" type="checkbox" name="usertype" value="3">
-                    <span class="ml-2">{{ __('I confirm that all the data mentioned above are correct') }}</span>
-                </label>
-            </div> --}}
+
 
 
             <script>

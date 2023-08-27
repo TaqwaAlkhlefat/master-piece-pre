@@ -21,7 +21,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    {{-- <link href="lib/animate/animate.min.css" rel="stylesheet"> --}}
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
 
@@ -86,7 +86,7 @@
                 {{-- <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a> --}}
                 <a href="{{ route('vote') }}" class="nav-item nav-link">Doctors vote</a>
             </div>
-            <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
+            {{-- <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button> --}}
             <a href="{{ route('appointment') }}" class="btn btn-primary py-2 px-4 ms-3">Appointment</a>
             @if(Route::has('login'))
             @auth
