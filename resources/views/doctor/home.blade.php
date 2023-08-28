@@ -52,7 +52,7 @@
                         @if($doctors->admin_approval == '0')
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0">
-                                <p class="m-b-10 f-w-600" style="color:black; font-size: 30px; line-height: 2;">
+                                <p class="m-b-10 f-w-600" style="color:black; font-size: 15px; line-height: 2;">
                                     Hello Doctor <span> {{ $doctors->name }} </span>, please wait for the admin approval to join the doctors department
                                 </p>
                             </h6>

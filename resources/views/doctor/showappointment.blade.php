@@ -51,6 +51,7 @@
                                 <td>{{ $appoint->message }}</td>
                                 <td>{{ $appoint->status }}</td>
                                 <td>
+
                                     <a class="btn btn-primary" href="{{url('approved',$appoint->id)}}">Approved</a>
                                 </td>
                                 <td>
